@@ -30,6 +30,19 @@
 		CC2C30232B0FD4CA00467D67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC2C30222B0FD4CA00467D67 /* Images.xcassets */; };
 		CC2C30332B0FD83700467D67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30312B0FD83700467D67 /* Images.swift */; };
 		CC2C30342B0FD83700467D67 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30322B0FD83700467D67 /* Colors.swift */; };
+		CC2C303E2B0FD94100467D67 /* IBMPlexSansArabic-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C30362B0FD94000467D67 /* IBMPlexSansArabic-Thin.otf */; };
+		CC2C303F2B0FD94100467D67 /* IBMPlexSansArabic-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C30372B0FD94000467D67 /* IBMPlexSansArabic-Bold.otf */; };
+		CC2C30402B0FD94100467D67 /* IBMPlexSansArabic-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C30382B0FD94000467D67 /* IBMPlexSansArabic-Text.otf */; };
+		CC2C30412B0FD94100467D67 /* IBMPlexSansArabic-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C30392B0FD94000467D67 /* IBMPlexSansArabic-Regular.otf */; };
+		CC2C30422B0FD94100467D67 /* IBMPlexSansArabic-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C303A2B0FD94000467D67 /* IBMPlexSansArabic-SemiBold.otf */; };
+		CC2C30432B0FD94100467D67 /* IBMPlexSansArabic-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C303B2B0FD94000467D67 /* IBMPlexSansArabic-Light.otf */; };
+		CC2C30442B0FD94100467D67 /* IBMPlexSansArabic-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C303C2B0FD94100467D67 /* IBMPlexSansArabic-ExtraLight.otf */; };
+		CC2C30452B0FD94100467D67 /* IBMPlexSansArabic-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2C303D2B0FD94100467D67 /* IBMPlexSansArabic-Medium.otf */; };
+		CC2C30492B0FD99D00467D67 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30482B0FD99D00467D67 /* Typography.swift */; };
+		CC2C304B2B0FD9AD00467D67 /* FontWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304A2B0FD9AD00467D67 /* FontWeight.swift */; };
+		CC2C304D2B0FD9C500467D67 /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304C2B0FD9C500467D67 /* FontSize.swift */; };
+		CC2C30502B0FDB0200467D67 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304F2B0FDB0200467D67 /* MainTabBarController.swift */; };
+		CC2C30532B0FDBE800467D67 /* LocalizationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */; };
 		CCBE9AD92B0FB8350054E11D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */; };
 		CCBE9ADD2B0FB8350054E11D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE9ADC2B0FB8350054E11D /* ViewController.swift */; };
 		CCBE9AE22B0FB8380054E11D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBE9AE12B0FB8380054E11D /* Assets.xcassets */; };
@@ -84,6 +97,19 @@
 		CC2C30222B0FD4CA00467D67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CC2C30312B0FD83700467D67 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		CC2C30322B0FD83700467D67 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CC2C30362B0FD94000467D67 /* IBMPlexSansArabic-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Thin.otf"; sourceTree = "<group>"; };
+		CC2C30372B0FD94000467D67 /* IBMPlexSansArabic-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Bold.otf"; sourceTree = "<group>"; };
+		CC2C30382B0FD94000467D67 /* IBMPlexSansArabic-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Text.otf"; sourceTree = "<group>"; };
+		CC2C30392B0FD94000467D67 /* IBMPlexSansArabic-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Regular.otf"; sourceTree = "<group>"; };
+		CC2C303A2B0FD94000467D67 /* IBMPlexSansArabic-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-SemiBold.otf"; sourceTree = "<group>"; };
+		CC2C303B2B0FD94000467D67 /* IBMPlexSansArabic-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Light.otf"; sourceTree = "<group>"; };
+		CC2C303C2B0FD94100467D67 /* IBMPlexSansArabic-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-ExtraLight.otf"; sourceTree = "<group>"; };
+		CC2C303D2B0FD94100467D67 /* IBMPlexSansArabic-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Medium.otf"; sourceTree = "<group>"; };
+		CC2C30482B0FD99D00467D67 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		CC2C304A2B0FD9AD00467D67 /* FontWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWeight.swift; sourceTree = "<group>"; };
+		CC2C304C2B0FD9C500467D67 /* FontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSize.swift; sourceTree = "<group>"; };
+		CC2C304F2B0FDB0200467D67 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationLayer.swift; sourceTree = "<group>"; };
 		CCBE9AD52B0FB8350054E11D /* ThmanyahPodcasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThmanyahPodcasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCBE9ADC2B0FB8350054E11D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +254,7 @@
 		CC2C300B2B0FCA5900467D67 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CC2C304E2B0FDAF900467D67 /* MainTabBarController */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -235,6 +262,7 @@
 		CC2C300C2B0FCA6300467D67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CC2C30352B0FD93500467D67 /* Fonts */,
 				CC2C301F2B0FD0BF00467D67 /* Generated */,
 				CC2C301D2B0FCEA100467D67 /* Colors.xcassets */,
 				CC2C30222B0FD4CA00467D67 /* Images.xcassets */,
@@ -265,6 +293,56 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		CC2C30352B0FD93500467D67 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C30472B0FD95A00467D67 /* Typography */,
+				CC2C30462B0FD94E00467D67 /* FontFiles */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CC2C30462B0FD94E00467D67 /* FontFiles */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C30372B0FD94000467D67 /* IBMPlexSansArabic-Bold.otf */,
+				CC2C303C2B0FD94100467D67 /* IBMPlexSansArabic-ExtraLight.otf */,
+				CC2C303B2B0FD94000467D67 /* IBMPlexSansArabic-Light.otf */,
+				CC2C303D2B0FD94100467D67 /* IBMPlexSansArabic-Medium.otf */,
+				CC2C30392B0FD94000467D67 /* IBMPlexSansArabic-Regular.otf */,
+				CC2C303A2B0FD94000467D67 /* IBMPlexSansArabic-SemiBold.otf */,
+				CC2C30382B0FD94000467D67 /* IBMPlexSansArabic-Text.otf */,
+				CC2C30362B0FD94000467D67 /* IBMPlexSansArabic-Thin.otf */,
+			);
+			path = FontFiles;
+			sourceTree = "<group>";
+		};
+		CC2C30472B0FD95A00467D67 /* Typography */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C304C2B0FD9C500467D67 /* FontSize.swift */,
+				CC2C30482B0FD99D00467D67 /* Typography.swift */,
+				CC2C304A2B0FD9AD00467D67 /* FontWeight.swift */,
+			);
+			path = Typography;
+			sourceTree = "<group>";
+		};
+		CC2C304E2B0FDAF900467D67 /* MainTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C304F2B0FDB0200467D67 /* MainTabBarController.swift */,
+			);
+			path = MainTabBarController;
+			sourceTree = "<group>";
+		};
+		CC2C30512B0FDBE100467D67 /* LocalizationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */,
+			);
+			path = LocalizationLayer;
+			sourceTree = "<group>";
+		};
 		CCBE9ACC2B0FB8350054E11D = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +368,7 @@
 		CCBE9AD72B0FB8350054E11D /* ThmanyahPodcasts */ = {
 			isa = PBXGroup;
 			children = (
+				CC2C30512B0FDBE100467D67 /* LocalizationLayer */,
 				CC2C301B2B0FCE8700467D67 /* swiftgen.yml */,
 				CC2C300F2B0FCB3F00467D67 /* Extensions */,
 				CC2C300E2B0FCB3B00467D67 /* Workers */,
@@ -438,10 +517,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC2C2FE02B0FC6A900467D67 /* .swiftformat in Resources */,
+				CC2C30452B0FD94100467D67 /* IBMPlexSansArabic-Medium.otf in Resources */,
+				CC2C303E2B0FD94100467D67 /* IBMPlexSansArabic-Thin.otf in Resources */,
 				CC2C301C2B0FCE8800467D67 /* swiftgen.yml in Resources */,
+				CC2C30402B0FD94100467D67 /* IBMPlexSansArabic-Text.otf in Resources */,
 				CC2C30232B0FD4CA00467D67 /* Images.xcassets in Resources */,
+				CC2C30432B0FD94100467D67 /* IBMPlexSansArabic-Light.otf in Resources */,
+				CC2C30422B0FD94100467D67 /* IBMPlexSansArabic-SemiBold.otf in Resources */,
 				CC2C2FC62B0FC38300467D67 /* .swiftlint.yml in Resources */,
+				CC2C30442B0FD94100467D67 /* IBMPlexSansArabic-ExtraLight.otf in Resources */,
+				CC2C30412B0FD94100467D67 /* IBMPlexSansArabic-Regular.otf in Resources */,
 				CC2C301E2B0FCEA100467D67 /* Colors.xcassets in Resources */,
+				CC2C303F2B0FD94100467D67 /* IBMPlexSansArabic-Bold.otf in Resources */,
 				CCBE9AE52B0FB8380054E11D /* LaunchScreen.storyboard in Resources */,
 				CCBE9AE22B0FB8380054E11D /* Assets.xcassets in Resources */,
 			);
@@ -636,14 +723,19 @@
 				CC2C2FF02B0FC6DB00467D67 /* APIRequestExecuter.swift in Sources */,
 				CC2C2FF12B0FC6DB00467D67 /* APIRequestResponseLog.swift in Sources */,
 				CC2C30022B0FC96300467D67 /* PodcastsProtocols.swift in Sources */,
+				CC2C304B2B0FD9AD00467D67 /* FontWeight.swift in Sources */,
 				CC2C30042B0FC96300467D67 /* PodcastsEntity.swift in Sources */,
 				CC2C2FEB2B0FC6DB00467D67 /* APIRequestBuilder.swift in Sources */,
+				CC2C304D2B0FD9C500467D67 /* FontSize.swift in Sources */,
 				CC2C2FFE2B0FC96300467D67 /* PodcastsContainerView.swift in Sources */,
 				CC2C30012B0FC96300467D67 /* PodcastsViewController.swift in Sources */,
 				CC2C2FEE2B0FC6DB00467D67 /* Int+HTTPStatusCode.swift in Sources */,
 				CCBE9AD92B0FB8350054E11D /* AppDelegate.swift in Sources */,
+				CC2C30532B0FDBE800467D67 /* LocalizationLayer.swift in Sources */,
 				CC2C30332B0FD83700467D67 /* Images.swift in Sources */,
+				CC2C30502B0FDB0200467D67 /* MainTabBarController.swift in Sources */,
 				CC2C30002B0FC96300467D67 /* PodcastsRouter.swift in Sources */,
+				CC2C30492B0FD99D00467D67 /* Typography.swift in Sources */,
 				CC2C2FFF2B0FC96300467D67 /* PodcastsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
