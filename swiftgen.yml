@@ -1,8 +1,18 @@
 
 xcassets:
-  inputs:
-    - ThmanyahPodcasts/Resources/Colors.xcassets
-  outputs:
-    - templateName: swift5
-      output: ThmanyahPodcasts/Resources/Generated/Colors.swift
-
+  - inputs:
+      - ThmanyahPodcasts/Resources/Colors.xcassets
+    outputs:
+      - templatePath: ThmanyahPodcasts/Resources/xcassets-swift5.stencil
+        output: ThmanyahPodcasts/Resources/Generated/Colors.swift
+        params:
+          publicAccess: public
+          enumName: Colors
+  - inputs:
+      - ThmanyahPodcasts/Resources/Images.xcassets
+    outputs:
+      - templatePath: ThmanyahPodcasts/Resources/xcassets-swift5.stencil
+        output: ThmanyahPodcasts/Resources/Generated/Images.swift
+        params:
+          publicAccess: public
+          enumName: Images

@@ -27,7 +27,9 @@
 		CC2C30042B0FC96300467D67 /* PodcastsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C2FFC2B0FC96300467D67 /* PodcastsEntity.swift */; };
 		CC2C301C2B0FCE8800467D67 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = CC2C301B2B0FCE8700467D67 /* swiftgen.yml */; };
 		CC2C301E2B0FCEA100467D67 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC2C301D2B0FCEA100467D67 /* Colors.xcassets */; };
-		CC2C30212B0FD23E00467D67 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30202B0FD23E00467D67 /* Colors.swift */; };
+		CC2C30232B0FD4CA00467D67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC2C30222B0FD4CA00467D67 /* Images.xcassets */; };
+		CC2C30332B0FD83700467D67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30312B0FD83700467D67 /* Images.swift */; };
+		CC2C30342B0FD83700467D67 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30322B0FD83700467D67 /* Colors.swift */; };
 		CCBE9AD92B0FB8350054E11D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */; };
 		CCBE9ADD2B0FB8350054E11D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE9ADC2B0FB8350054E11D /* ViewController.swift */; };
 		CCBE9AE22B0FB8380054E11D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBE9AE12B0FB8380054E11D /* Assets.xcassets */; };
@@ -79,7 +81,9 @@
 		CC2C2FFC2B0FC96300467D67 /* PodcastsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsEntity.swift; sourceTree = "<group>"; };
 		CC2C301B2B0FCE8700467D67 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		CC2C301D2B0FCEA100467D67 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		CC2C30202B0FD23E00467D67 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CC2C30222B0FD4CA00467D67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CC2C30312B0FD83700467D67 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		CC2C30322B0FD83700467D67 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CCBE9AD52B0FB8350054E11D /* ThmanyahPodcasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThmanyahPodcasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCBE9ADC2B0FB8350054E11D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 			children = (
 				CC2C301F2B0FD0BF00467D67 /* Generated */,
 				CC2C301D2B0FCEA100467D67 /* Colors.xcassets */,
+				CC2C30222B0FD4CA00467D67 /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -254,7 +259,8 @@
 		CC2C301F2B0FD0BF00467D67 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				CC2C30202B0FD23E00467D67 /* Colors.swift */,
+				CC2C30322B0FD83700467D67 /* Colors.swift */,
+				CC2C30312B0FD83700467D67 /* Images.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 			files = (
 				CC2C2FE02B0FC6A900467D67 /* .swiftformat in Resources */,
 				CC2C301C2B0FCE8800467D67 /* swiftgen.yml in Resources */,
+				CC2C30232B0FD4CA00467D67 /* Images.xcassets in Resources */,
 				CC2C2FC62B0FC38300467D67 /* .swiftlint.yml in Resources */,
 				CC2C301E2B0FCEA100467D67 /* Colors.xcassets in Resources */,
 				CCBE9AE52B0FB8380054E11D /* LaunchScreen.storyboard in Resources */,
@@ -624,17 +631,18 @@
 				CC2C2FED2B0FC6DB00467D67 /* BaseAPIRequestResponseFailureErrorType.swift in Sources */,
 				CC2C30032B0FC96300467D67 /* PodcastsInteractor.swift in Sources */,
 				CC2C2FF22B0FC6DB00467D67 /* APIRequestInterceptor.swift in Sources */,
+				CC2C30342B0FD83700467D67 /* Colors.swift in Sources */,
 				CCBE9ADD2B0FB8350054E11D /* ViewController.swift in Sources */,
 				CC2C2FF02B0FC6DB00467D67 /* APIRequestExecuter.swift in Sources */,
 				CC2C2FF12B0FC6DB00467D67 /* APIRequestResponseLog.swift in Sources */,
 				CC2C30022B0FC96300467D67 /* PodcastsProtocols.swift in Sources */,
 				CC2C30042B0FC96300467D67 /* PodcastsEntity.swift in Sources */,
 				CC2C2FEB2B0FC6DB00467D67 /* APIRequestBuilder.swift in Sources */,
-				CC2C30212B0FD23E00467D67 /* Colors.swift in Sources */,
 				CC2C2FFE2B0FC96300467D67 /* PodcastsContainerView.swift in Sources */,
 				CC2C30012B0FC96300467D67 /* PodcastsViewController.swift in Sources */,
 				CC2C2FEE2B0FC6DB00467D67 /* Int+HTTPStatusCode.swift in Sources */,
 				CCBE9AD92B0FB8350054E11D /* AppDelegate.swift in Sources */,
+				CC2C30332B0FD83700467D67 /* Images.swift in Sources */,
 				CC2C30002B0FC96300467D67 /* PodcastsRouter.swift in Sources */,
 				CC2C2FFF2B0FC96300467D67 /* PodcastsPresenter.swift in Sources */,
 			);
