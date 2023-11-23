@@ -10,6 +10,7 @@ target 'ThmanyahPodcasts' do
   pod 'Kingfisher', '~> 7.0'
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI', '~> 0.49'
+  pod 'SwiftGen', '~> 6.0'
   target 'ThmanyahPodcastsTests' do
     inherit! :search_paths
     # Pods for testing

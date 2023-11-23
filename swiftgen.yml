@@ -1,0 +1,8 @@
+
+xcassets:
+  inputs:
+    - ThmanyahPodcasts/Resources/Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: ThmanyahPodcasts/Resources/Generated/Colors.swift
+
