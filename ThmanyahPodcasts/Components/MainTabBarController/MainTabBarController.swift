@@ -5,54 +5,105 @@
 //  Created by Arab Calibers on 23/11/2023.
 //
 
-import Foundation
 import UIKit
+
 class MainTabBarController: UITabBarController {
+    var hasHomeButton: Bool {
+        let window = UIApplication
+            .shared
+            .connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
+        guard let safeAreaBottom = window?.safeAreaInsets.bottom else {
+            return false
+        }
+        return safeAreaBottom <= 0
+    }
+
+    private let tabBarShadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Colors.background.color
+        view.clipsToBounds = true
+        view.applyDropShadow()
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        self.tabBar.backgroundColor = .white
-        self.tabBar.barTintColor = .white
-        self.tabBar.tintColor = .purple
-        print(LocalizationManager.shared.isAppInArabicLanguage())
-        print(LocalizationManager.shared.isAppInEnglishLanguage())
-        self.tabBar.isTranslucent = false
-        self.viewControllers = [
-            self.setNavigationController(rootViewController: PodcastsRouter.createAnModule(),
-                                         withTitle: MainTabBarTabs.home.getDisplayableTitle(),
-                                         withImage: Images.home.image),
-            self.setNavigationController(rootViewController: UIViewController(),
-                                         withTitle: MainTabBarTabs.search.getDisplayableTitle(),
-                                         withImage: Images.search.image),
-            self.setNavigationController(rootViewController: UIViewController(),
-                                         withTitle: MainTabBarTabs.Library.getDisplayableTitle(),
-                                         withImage: Images.library.image)
+        configureViewControllers()
+        configureTabBarAppearance()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !hasHomeButton { setTabBarHeight(height: 90) }
+        tabBarShadowView.frame = tabBar.frame
+        if !hasHomeButton { setTabBarWidth(withMargin: 30) }
+    }
+
+    private func configureViewControllers() {
+        viewControllers = [
+            createNavigationController(rootViewController: PlayListRouter.createAnModule(),
+                                       title: "Home".localize,
+                                       image: Images.home.image),
+            createNavigationController(rootViewController: UIViewController(),
+                                       title: "Search".localize,
+                                       image: Images.search.image),
+            createNavigationController(rootViewController: UIViewController(),
+                                       title: "Library".localize,
+                                       image: Images.library.image)
         ]
     }
 
-    fileprivate func setNavigationController(rootViewController: UIViewController, withTitle: String, withImage: UIImage) -> UIViewController {
-        let navController = UINavigationController(rootViewController: rootViewController)
-        rootViewController.navigationItem.title = withTitle
-        navController.tabBarItem.title = withTitle
-        navController.tabBarItem.image = withImage
+    private func configureTabBarAppearance() {
+        if !hasHomeButton {
+            UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -6)
+        }
+        hideTabBarBorder()
+        addCustomTabBarView()
+        setupTabBarFont()
+        tabBar.barTintColor = .white
+        tabBar.tintColor = Colors.haileyBlue.color
+        tabBar.isTranslucent = false
+    }
+
+    private func createNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+        let navController = MainNavigationController(rootViewController: rootViewController)
+        rootViewController.navigationItem.title = title
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = image
         return navController
     }
-}
 
-enum MainTabBarTabs {
-    case home
-    case search
-    case Library
+    private func hideTabBarBorder() {
+        tabBar.backgroundImage = UIImage.from(color: .clear)
+        tabBar.shadowImage = UIImage()
+        tabBar.clipsToBounds = true
+    }
 
-    func getDisplayableTitle() -> String {
-        let isAppInArabicMode = LocalizationManager.shared.isAppInArabicLanguage()
-        switch self {
-        case .home:
-            return isAppInArabicMode ? "الرئيسية" : "Home"
-        case .search:
-            return isAppInArabicMode ? "البحث" : "Search"
-        case .Library:
-            return isAppInArabicMode ? "المكتبة" : "Library"
-        }
+    private func setTabBarWidth(withMargin margin: CGFloat) {
+        tabBar.frame.size.width = view.frame.width - (margin * 2)
+        tabBar.frame.origin.x = (margin * 2) / 2
+    }
+
+    private func setTabBarHeight(height: CGFloat) {
+        var newFrame = tabBar.frame
+        newFrame.size.height = height
+        newFrame.origin.y -= (height - tabBar.frame.size.height)
+        tabBar.frame = newFrame
+    }
+
+    private func addCustomTabBarView() {
+        tabBarShadowView.frame = tabBar.frame
+        view.addSubview(tabBarShadowView)
+        view.bringSubviewToFront(tabBar)
+    }
+
+    private func setupTabBarFont() {
+        let tabBarItemTitleTypography = Typography(size: .tabBar, weight: .medium)
+        let attributes = [NSAttributedString.Key.font: tabBarItemTitleTypography.font]
+        UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .selected)
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 public struct Typography {
     public var size: FontSize
     public var weight: FontWeight
-    public var color: UIColor
+    public var color: UIColor?
     public var alpha: CGFloat? = 1
 
     /// Initialize a new DDFont instance with the provided settings.
@@ -22,7 +22,7 @@ public struct Typography {
     ///   - alpha: the alpha needed for the color
     public init(size: FontSize,
                 weight: FontWeight,
-                color: UIColor,
+                color: UIColor? = .clear,
                 alpha: CGFloat? = 1)
     {
         self.size = size

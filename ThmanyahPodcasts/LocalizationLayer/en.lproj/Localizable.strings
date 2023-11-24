@@ -5,6 +5,6 @@
   Created by Arab Calibers on 23/11/2023.
   
 */
-//"Home" = "الرئيسية";
-//"Search" = "البحث";
-//"Library" = "المكتبة";
+"Home" = "Home";
+"Search" = "Search";
+"Library" = "Library";

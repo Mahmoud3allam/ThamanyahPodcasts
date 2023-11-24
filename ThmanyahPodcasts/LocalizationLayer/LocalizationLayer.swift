@@ -8,9 +8,6 @@
 import Foundation
 import UIKit
 // swiftlint:disable force_unwrapping discouraged_direct_init superfluous_disable_command force_cast
-protocol LocalizationDelegete: AnyObject {
-    func restartApplication(with initialViewController: UIViewController)
-}
 
 enum ApplicationLanguage: String {
     case arabic = "ar"
@@ -20,11 +17,8 @@ enum ApplicationLanguage: String {
 class LocalizationManager {
     private let appLanguagesKey = "AppleLanguages"
 
-    init() {
-        self.DoTheExchange()
-    }
+    init() {}
 
-    weak var delegete: LocalizationDelegete?
     static let shared = LocalizationManager()
 
     func currentLanguage() -> ApplicationLanguage {
@@ -34,7 +28,7 @@ class LocalizationManager {
         return fristString.contains(ApplicationLanguage.arabic.rawValue) ? .arabic : .english
     }
 
-    func setAppLanguage(lang: ApplicationLanguage, initialViewController: UIViewController) {
+    func setAppLanguage(lang: ApplicationLanguage) {
         let def = UserDefaults.standard
         def.set([lang.rawValue, currentLanguage().rawValue], forKey: appLanguagesKey)
         def.synchronize()
@@ -46,7 +40,6 @@ class LocalizationManager {
         }
         UIView.appearance().semanticContentAttribute = semanticAttribute
         UITabBar.appearance().semanticContentAttribute = semanticAttribute
-        self.delegete?.restartApplication(with: initialViewController)
     }
 
     func checkLanguageDirection() -> UISemanticContentAttribute {
@@ -66,15 +59,7 @@ class LocalizationManager {
         currentLanguage() == .english
     }
 
-    func toggleLanguage(initialViewController: UIViewController) {
-        if self.isAppInArabicLanguage() {
-            self.setAppLanguage(lang: .english, initialViewController: initialViewController)
-        } else {
-            self.setAppLanguage(lang: .arabic, initialViewController: initialViewController)
-        }
-    }
-
-    private func DoTheExchange() {
+    func DoTheExchange() {
         ExchangeMethodsForClass(ClassName: Bundle.self, originalSelector: #selector(Bundle.localizedString(forKey:value:table:)), overrideSelector: #selector(Bundle.customLocalizedStringForKey(_:value:table:)))
     }
 
@@ -107,14 +92,5 @@ extension Bundle {
             bundle = Bundle(path: path!)!
         }
         return bundle.customLocalizedStringForKey(key, value: value, table: tableName)
-    }
-}
-
-extension AppDelegate: LocalizationDelegete {
-    func restartApplication(with initialViewController: UIViewController) {
-        self.window?.rootViewController = UINavigationController(rootViewController: initialViewController)
-        if let window = self.window {
-            UIView.transition(with: window, duration: 1, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        }
     }
 }
