@@ -15,9 +15,15 @@ class PodcastsRouter: PodcastsRouterProtocol {
         let router = PodcastsRouter()
         let view = PodcastsViewController()
         let presenter = PodcastsPresenter(view: view, interactor: interactor, router: router)
+        let authWorker = AuthWorker()
+        let podcastWorker = PodcastWorker()
+        let storage = UserDefaultManager()
         view.presenter = presenter
-        interactor.presenter = presenter
         router.viewController = view
+        interactor.presenter = presenter
+        interactor.authWorker = authWorker
+        interactor.storage = storage
+        interactor.podcastWorker = podcastWorker
         return view
     }
 }

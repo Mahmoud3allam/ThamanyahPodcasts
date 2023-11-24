@@ -27,4 +27,12 @@ class PodcastsContainerView: UIView {
     }
 
     private func addSubViews() {}
+
+    func enableShimmerEffect() {
+        print("Enable Shimmer")
+    }
+
+    func disableShimmerEffect() {
+        print("Disable Shimmer")
+    }
 }

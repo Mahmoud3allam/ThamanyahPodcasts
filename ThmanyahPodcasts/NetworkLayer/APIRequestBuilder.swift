@@ -27,7 +27,7 @@ extension APIRequestBuilder {
     var headers: [String: String]? {
         switch task {
         case .normalRequest, .WithParametersRequest:
-            return ["application/json": "Accept", "Content-Type": "application/json"]
+            return ["Content-Type": "application/json"]
         case .multiPartRequest:
             return ["application/json": "Accept"]
         }

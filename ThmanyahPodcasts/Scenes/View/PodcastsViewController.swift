@@ -16,12 +16,24 @@ class PodcastsViewController: UIViewController, PodcastsViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.presenter.login()
     }
 
     override func loadView() {
         super.loadView()
         self.view = containerView
+    }
+
+    func enableShimmerEffect() {
+        print("Enable Shimmer")
+    }
+
+    func disableShimmerEffect() {
+        print("Disable Shimmer")
+    }
+
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
+        LocalizationManager.shared.toggleLanguage(initialViewController: MainTabBarController())
     }
 }

@@ -43,8 +43,17 @@
 		CC2C304D2B0FD9C500467D67 /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304C2B0FD9C500467D67 /* FontSize.swift */; };
 		CC2C30502B0FDB0200467D67 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304F2B0FDB0200467D67 /* MainTabBarController.swift */; };
 		CC2C30532B0FDBE800467D67 /* LocalizationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */; };
+		CC2C30592B0FDF0900467D67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC2C305B2B0FDF0900467D67 /* Localizable.strings */; };
+		CC2C30612B0FE3BD00467D67 /* PodcastWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30602B0FE3BD00467D67 /* PodcastWorker.swift */; };
+		CC2C30652B0FE3DE00467D67 /* AuthWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30642B0FE3DE00467D67 /* AuthWorker.swift */; };
+		CC2C30672B0FE41300467D67 /* AuthNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30662B0FE41300467D67 /* AuthNetworking.swift */; };
+		CC2C30692B0FE64F00467D67 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30682B0FE64F00467D67 /* UserResponse.swift */; };
+		CC2C306B2B0FEF7300467D67 /* BaseAPIRequestResponseBusinessErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C306A2B0FEF7300467D67 /* BaseAPIRequestResponseBusinessErrorType.swift */; };
+		CC2C306D2B0FF11D00467D67 /* PodcastNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C306C2B0FF11D00467D67 /* PodcastNetworking.swift */; };
+		CC2C30702B10216D00467D67 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C306F2B10216D00467D67 /* UserDefaultManager.swift */; };
+		CC2C30722B10250700467D67 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30712B10250700467D67 /* UserDefaultsKeys.swift */; };
+		CC2C30742B10271200467D67 /* PodcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30732B10271200467D67 /* PodcastResponse.swift */; };
 		CCBE9AD92B0FB8350054E11D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */; };
-		CCBE9ADD2B0FB8350054E11D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE9ADC2B0FB8350054E11D /* ViewController.swift */; };
 		CCBE9AE22B0FB8380054E11D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBE9AE12B0FB8380054E11D /* Assets.xcassets */; };
 		CCBE9AE52B0FB8380054E11D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBE9AE32B0FB8380054E11D /* LaunchScreen.storyboard */; };
 		CCBE9AF02B0FB8380054E11D /* ThmanyahPodcastsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE9AEF2B0FB8380054E11D /* ThmanyahPodcastsTests.swift */; };
@@ -110,9 +119,21 @@
 		CC2C304C2B0FD9C500467D67 /* FontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSize.swift; sourceTree = "<group>"; };
 		CC2C304F2B0FDB0200467D67 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationLayer.swift; sourceTree = "<group>"; };
+		CC2C30542B0FDD1600467D67 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CC2C30562B0FDE8500467D67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CC2C305A2B0FDF0900467D67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CC2C305C2B0FDF0D00467D67 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CC2C30602B0FE3BD00467D67 /* PodcastWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastWorker.swift; sourceTree = "<group>"; };
+		CC2C30642B0FE3DE00467D67 /* AuthWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWorker.swift; sourceTree = "<group>"; };
+		CC2C30662B0FE41300467D67 /* AuthNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworking.swift; sourceTree = "<group>"; };
+		CC2C30682B0FE64F00467D67 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		CC2C306A2B0FEF7300467D67 /* BaseAPIRequestResponseBusinessErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPIRequestResponseBusinessErrorType.swift; sourceTree = "<group>"; };
+		CC2C306C2B0FF11D00467D67 /* PodcastNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastNetworking.swift; sourceTree = "<group>"; };
+		CC2C306F2B10216D00467D67 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		CC2C30712B10250700467D67 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		CC2C30732B10271200467D67 /* PodcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastResponse.swift; sourceTree = "<group>"; };
 		CCBE9AD52B0FB8350054E11D /* ThmanyahPodcasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThmanyahPodcasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CCBE9ADC2B0FB8350054E11D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CCBE9AE12B0FB8380054E11D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCBE9AE42B0FB8380054E11D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCBE9AE62B0FB8380054E11D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -185,6 +206,7 @@
 				CC2C2FE72B0FC6DB00467D67 /* APIRequestExecuter.swift */,
 				CC2C2FE82B0FC6DB00467D67 /* APIRequestResponseLog.swift */,
 				CC2C2FE92B0FC6DB00467D67 /* APIRequestInterceptor.swift */,
+				CC2C306A2B0FEF7300467D67 /* BaseAPIRequestResponseBusinessErrorType.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -273,6 +295,8 @@
 		CC2C300E2B0FCB3B00467D67 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				CC2C30632B0FE3D700467D67 /* AuthWorker */,
+				CC2C30622B0FE3C300467D67 /* PodcastsWorker */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -339,8 +363,38 @@
 			isa = PBXGroup;
 			children = (
 				CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */,
+				CC2C305B2B0FDF0900467D67 /* Localizable.strings */,
 			);
 			path = LocalizationLayer;
+			sourceTree = "<group>";
+		};
+		CC2C30622B0FE3C300467D67 /* PodcastsWorker */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C30602B0FE3BD00467D67 /* PodcastWorker.swift */,
+				CC2C306C2B0FF11D00467D67 /* PodcastNetworking.swift */,
+				CC2C30732B10271200467D67 /* PodcastResponse.swift */,
+			);
+			path = PodcastsWorker;
+			sourceTree = "<group>";
+		};
+		CC2C30632B0FE3D700467D67 /* AuthWorker */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C30642B0FE3DE00467D67 /* AuthWorker.swift */,
+				CC2C30662B0FE41300467D67 /* AuthNetworking.swift */,
+				CC2C30682B0FE64F00467D67 /* UserResponse.swift */,
+			);
+			path = AuthWorker;
+			sourceTree = "<group>";
+		};
+		CC2C306E2B10215C00467D67 /* UserDefaultManager */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C306F2B10216D00467D67 /* UserDefaultManager.swift */,
+				CC2C30712B10250700467D67 /* UserDefaultsKeys.swift */,
+			);
+			path = UserDefaultManager;
 			sourceTree = "<group>";
 		};
 		CCBE9ACC2B0FB8350054E11D = {
@@ -368,6 +422,7 @@
 		CCBE9AD72B0FB8350054E11D /* ThmanyahPodcasts */ = {
 			isa = PBXGroup;
 			children = (
+				CC2C306E2B10215C00467D67 /* UserDefaultManager */,
 				CC2C30512B0FDBE100467D67 /* LocalizationLayer */,
 				CC2C301B2B0FCE8700467D67 /* swiftgen.yml */,
 				CC2C300F2B0FCB3F00467D67 /* Extensions */,
@@ -379,7 +434,6 @@
 				CC2C2FDF2B0FC6A900467D67 /* .swiftformat */,
 				CC2C2FC52B0FC38300467D67 /* .swiftlint.yml */,
 				CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */,
-				CCBE9ADC2B0FB8350054E11D /* ViewController.swift */,
 				CCBE9AE12B0FB8380054E11D /* Assets.xcassets */,
 				CCBE9AE32B0FB8380054E11D /* LaunchScreen.storyboard */,
 				CCBE9AE62B0FB8380054E11D /* Info.plist */,
@@ -496,8 +550,9 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ar,
+				en,
 			);
 			mainGroup = CCBE9ACC2B0FB8350054E11D;
 			productRefGroup = CCBE9AD62B0FB8350054E11D /* Products */;
@@ -525,6 +580,7 @@
 				CC2C30432B0FD94100467D67 /* IBMPlexSansArabic-Light.otf in Resources */,
 				CC2C30422B0FD94100467D67 /* IBMPlexSansArabic-SemiBold.otf in Resources */,
 				CC2C2FC62B0FC38300467D67 /* .swiftlint.yml in Resources */,
+				CC2C30592B0FDF0900467D67 /* Localizable.strings in Resources */,
 				CC2C30442B0FD94100467D67 /* IBMPlexSansArabic-ExtraLight.otf in Resources */,
 				CC2C30412B0FD94100467D67 /* IBMPlexSansArabic-Regular.otf in Resources */,
 				CC2C301E2B0FCEA100467D67 /* Colors.xcassets in Resources */,
@@ -715,27 +771,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC2C30702B10216D00467D67 /* UserDefaultManager.swift in Sources */,
 				CC2C2FED2B0FC6DB00467D67 /* BaseAPIRequestResponseFailureErrorType.swift in Sources */,
 				CC2C30032B0FC96300467D67 /* PodcastsInteractor.swift in Sources */,
 				CC2C2FF22B0FC6DB00467D67 /* APIRequestInterceptor.swift in Sources */,
+				CC2C30672B0FE41300467D67 /* AuthNetworking.swift in Sources */,
+				CC2C306B2B0FEF7300467D67 /* BaseAPIRequestResponseBusinessErrorType.swift in Sources */,
 				CC2C30342B0FD83700467D67 /* Colors.swift in Sources */,
-				CCBE9ADD2B0FB8350054E11D /* ViewController.swift in Sources */,
 				CC2C2FF02B0FC6DB00467D67 /* APIRequestExecuter.swift in Sources */,
 				CC2C2FF12B0FC6DB00467D67 /* APIRequestResponseLog.swift in Sources */,
 				CC2C30022B0FC96300467D67 /* PodcastsProtocols.swift in Sources */,
 				CC2C304B2B0FD9AD00467D67 /* FontWeight.swift in Sources */,
+				CC2C30742B10271200467D67 /* PodcastResponse.swift in Sources */,
 				CC2C30042B0FC96300467D67 /* PodcastsEntity.swift in Sources */,
 				CC2C2FEB2B0FC6DB00467D67 /* APIRequestBuilder.swift in Sources */,
 				CC2C304D2B0FD9C500467D67 /* FontSize.swift in Sources */,
 				CC2C2FFE2B0FC96300467D67 /* PodcastsContainerView.swift in Sources */,
 				CC2C30012B0FC96300467D67 /* PodcastsViewController.swift in Sources */,
 				CC2C2FEE2B0FC6DB00467D67 /* Int+HTTPStatusCode.swift in Sources */,
+				CC2C30652B0FE3DE00467D67 /* AuthWorker.swift in Sources */,
 				CCBE9AD92B0FB8350054E11D /* AppDelegate.swift in Sources */,
+				CC2C30692B0FE64F00467D67 /* UserResponse.swift in Sources */,
 				CC2C30532B0FDBE800467D67 /* LocalizationLayer.swift in Sources */,
+				CC2C30722B10250700467D67 /* UserDefaultsKeys.swift in Sources */,
 				CC2C30332B0FD83700467D67 /* Images.swift in Sources */,
 				CC2C30502B0FDB0200467D67 /* MainTabBarController.swift in Sources */,
 				CC2C30002B0FC96300467D67 /* PodcastsRouter.swift in Sources */,
+				CC2C306D2B0FF11D00467D67 /* PodcastNetworking.swift in Sources */,
 				CC2C30492B0FD99D00467D67 /* Typography.swift in Sources */,
+				CC2C30612B0FE3BD00467D67 /* PodcastWorker.swift in Sources */,
 				CC2C2FFF2B0FC96300467D67 /* PodcastsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,10 +837,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CC2C305B2B0FDF0900467D67 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC2C305A2B0FDF0900467D67 /* en */,
+				CC2C305C2B0FDF0D00467D67 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CCBE9AE32B0FB8380054E11D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CCBE9AE42B0FB8380054E11D /* Base */,
+				CC2C30542B0FDD1600467D67 /* ar */,
+				CC2C30562B0FDE8500467D67 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -789,6 +864,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -852,6 +928,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

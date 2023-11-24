@@ -10,7 +10,17 @@ import Alamofire
 import Foundation
 
 final class APIRequestInterceptor: RequestInterceptor {
-    func adapt(_: URLRequest, for _: Session, completion _: @escaping (Result<URLRequest, Error>) -> Void) {}
+    private let userDefaultsManager: LocalStorageProtocol = UserDefaultManager()
 
-    func retry(_: Request, for _: Session, dueTo _: Error, completion _: @escaping (RetryResult) -> Void) {}
+    var accessToken: String {
+        userDefaultsManager.value(key: UserDefaultsKeys.accessToken) ?? ""
+    }
+
+    func adapt(_ urlRequest: URLRequest, for _: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        var urlRequest = urlRequest
+        if !accessToken.isEmpty {
+            urlRequest.headers.add(.authorization(bearerToken: accessToken))
+        }
+        completion(.success(urlRequest))
+    }
 }

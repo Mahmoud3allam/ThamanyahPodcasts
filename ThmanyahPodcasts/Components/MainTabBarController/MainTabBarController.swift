@@ -14,10 +14,19 @@ class MainTabBarController: UITabBarController {
         self.tabBar.backgroundColor = .white
         self.tabBar.barTintColor = .white
         self.tabBar.tintColor = .purple
+        print(LocalizationManager.shared.isAppInArabicLanguage())
+        print(LocalizationManager.shared.isAppInEnglishLanguage())
         self.tabBar.isTranslucent = false
         self.viewControllers = [
-            self.setNavigationController(rootViewController: PodcastsRouter.createAnModule(), withTitle: "", withImage: #imageLiteral(resourceName: "Play")),
-            self.setNavigationController(rootViewController: ViewController(), withTitle: "Discover", withImage: #imageLiteral(resourceName: "Play"))
+            self.setNavigationController(rootViewController: PodcastsRouter.createAnModule(),
+                                         withTitle: MainTabBarTabs.home.getDisplayableTitle(),
+                                         withImage: Images.home.image),
+            self.setNavigationController(rootViewController: UIViewController(),
+                                         withTitle: MainTabBarTabs.search.getDisplayableTitle(),
+                                         withImage: Images.search.image),
+            self.setNavigationController(rootViewController: UIViewController(),
+                                         withTitle: MainTabBarTabs.Library.getDisplayableTitle(),
+                                         withImage: Images.library.image)
         ]
     }
 
@@ -27,5 +36,23 @@ class MainTabBarController: UITabBarController {
         navController.tabBarItem.title = withTitle
         navController.tabBarItem.image = withImage
         return navController
+    }
+}
+
+enum MainTabBarTabs {
+    case home
+    case search
+    case Library
+
+    func getDisplayableTitle() -> String {
+        let isAppInArabicMode = LocalizationManager.shared.isAppInArabicLanguage()
+        switch self {
+        case .home:
+            return isAppInArabicMode ? "الرئيسية" : "Home"
+        case .search:
+            return isAppInArabicMode ? "البحث" : "Search"
+        case .Library:
+            return isAppInArabicMode ? "المكتبة" : "Library"
+        }
     }
 }

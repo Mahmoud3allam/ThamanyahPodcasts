@@ -9,18 +9,29 @@
 import Foundation
 protocol PodcastsViewProtocol: AnyObject {
     var presenter: PodcastsPresenterProtocol! { get set }
+
+    func enableShimmerEffect()
+    func disableShimmerEffect()
 }
 
 protocol PodcastsPresenterProtocol {
     var view: PodcastsViewProtocol? { get set }
 
-    func viewDidLoad()
+    func login()
 }
 
 protocol PodcastsRouterProtocol {}
 
 protocol PodcastsInteractorInPutProtocol {
     var presenter: PodcastsInteractorOutPutProtocol? { get set }
+
+    func login(email: String, password: String)
+    func fetchPodcasts()
 }
 
-protocol PodcastsInteractorOutPutProtocol: AnyObject {}
+protocol PodcastsInteractorOutPutProtocol: AnyObject {
+    func loggedInSucsessfully()
+    func failedToLogin(errorMessage: String)
+    func didFetchedPodcastsSucsessfully(podcastDetails: PodcastDetails)
+    func failedToFetchPodcasts(errorMessage: String)
+}

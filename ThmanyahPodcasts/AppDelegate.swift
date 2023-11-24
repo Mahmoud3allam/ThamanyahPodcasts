@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-        window.rootViewController = PodcastsRouter.createAnModule()
+        LocalizationManager.shared.delegete = self
+        window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
         return true
     }
