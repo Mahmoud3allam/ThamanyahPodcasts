@@ -1,5 +1,5 @@
 //
-//  PodcastsEntity.swift
+//  PlaylistDataSource.swift
 //  ThmanyahPodcasts
 //
 //  Created Arab Calibers on 23/11/2023.
@@ -10,6 +10,5 @@ import Foundation
 struct PlaylistDataSource {
     var playlistImageUrl: String
     var playlistTitle: String
-
     var playListDescription: String
 }

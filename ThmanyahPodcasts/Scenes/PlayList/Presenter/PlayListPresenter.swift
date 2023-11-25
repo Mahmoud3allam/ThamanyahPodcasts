@@ -8,7 +8,7 @@
 // @Mahmoud Allam Templete ^_^
 
 import Foundation
-class PlayListPresenter: PlayListPresenterProtocol, PlayListInteractorOutPutProtocol {
+class PlayListPresenter: PlayListPresenterProtocol {
     weak var view: PlayListViewProtocol?
     private let interactor: PlayListInteractorInPutProtocol
     private let router: PlayListRouterProtocol
@@ -39,6 +39,22 @@ class PlayListPresenter: PlayListPresenterProtocol, PlayListInteractorOutPutProt
         cell.setData(dataSource: self.eposidesDataSource[indexPath.item])
     }
 
+    func playEposide(at indexPath: IndexPath) {
+        guard indexPath.item <= self.eposidesDataSource.count - 1 else {
+            return
+        }
+        let eposideToPlayer = self.eposidesDataSource[indexPath.item]
+        let podcastPlayerDataSource = PodcastPlayer.Presentable(podcastId: eposideToPlayer.id ?? "",
+                                                                podcastUrl: eposideToPlayer.audioUrl ?? "",
+                                                                podCastTitle: eposideToPlayer.title ?? "",
+                                                                podCastAuther: eposideToPlayer.name ?? "",
+                                                                pocCastImage: .url(eposideToPlayer.imageUrl ?? ""))
+        self.view?.playEposide(dataSource: podcastPlayerDataSource)
+        self.view?.selectRow(at: indexPath)
+    }
+}
+
+extension PlayListPresenter: PlayListInteractorOutPutProtocol {
     func loggedInSucsessfully() {
         self.interactor.fetchPlayList()
     }
@@ -51,7 +67,13 @@ class PlayListPresenter: PlayListPresenterProtocol, PlayListInteractorOutPutProt
     func didFetchedPlayListSucsessfully(playListDetails: PlayListDetails) {
         if let eposides = playListDetails.episodes {
             self.eposidesDataSource = eposides.map { eposide in
-                EposideCellDataSource(imageUrl: eposide.image, audioUrl: eposide.audioLink, title: eposide.name, name: eposide.podcastName, date: eposide.releaseDate)
+                EposideCellDataSource(id: eposide.id,
+                                      imageUrl: eposide.image,
+                                      audioUrl: eposide.audioLink,
+                                      title: eposide.name,
+                                      name: eposide.podcastName,
+                                      date: eposide.createdAt,
+                                      totalSeconts: eposide.durationInSeconds)
             }
         }
         if let playList = playListDetails.playlist {
@@ -60,8 +82,9 @@ class PlayListPresenter: PlayListPresenterProtocol, PlayListInteractorOutPutProt
                                                         playListDescription: playList.description ?? "")
             self.view?.setPlaylistHeaderData(dataSource: playListDataSource)
 
-            self.playListSectionHeaderDataSource = PlayListSectionHeaderDataSource(count: playList.episodeCount, totalSeconds: playList.episodeTotalDuration)
-        } else {}
+            self.playListSectionHeaderDataSource = PlayListSectionHeaderDataSource(count: playList.episodeCount,
+                                                                                   totalSeconds: playList.episodeTotalDuration)
+        }
         self.didFetchedPlayList = true
         self.view?.hideLoading()
         self.view?.reloadTableView()

@@ -14,16 +14,10 @@ struct PlayListSectionHeaderDataSource {
     func getStringToDisplay() -> String {
         let countIndicator = "Eposide".localize
         let countToDisplay = "\(count ?? 0) \(countIndicator)"
-        let duration = convertSecondsToHrMinuteSec(seconds: totalSeconds ?? 0)
-        return "\(countToDisplay) , \(duration)"
-    }
-
-    func convertSecondsToHrMinuteSec(seconds: Int) -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
-        formatter.unitsStyle = .full
-
-        let formattedString = formatter.string(from: TimeInterval(seconds))
-        return formattedString ?? ""
+        var durationToDisplay = ""
+        if let totalSeconds = self.totalSeconds {
+            durationToDisplay = totalSeconds.convertSecondsToHrMinutes()
+        }
+        return "\(countToDisplay) , \(durationToDisplay)"
     }
 }

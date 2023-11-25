@@ -23,6 +23,12 @@ extension PlayListContainerView: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         self.presenter.configureEposidesCell(cell: cell, indexPath: indexPath)
+        cell.onTapPlay = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.presenter.playEposide(at: indexPath)
+        }
         return cell
     }
 
@@ -43,7 +49,9 @@ extension PlayListContainerView: UITableViewDelegate, UITableViewDataSource {
         85
     }
 
-    func tableView(_: UITableView, didSelectRowAt _: IndexPath) {}
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.presenter.playEposide(at: indexPath)
+    }
 
     func tableView(_: UITableView, heightForFooterInSection _: Int) -> CGFloat {
         return 0

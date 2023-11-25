@@ -27,7 +27,7 @@ class StretchyHeaderView: UIView {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .lightGray.withAlphaComponent(0.5)
         return imageView
     }()
@@ -80,9 +80,9 @@ class StretchyHeaderView: UIView {
 
     private func layoutUserInterFace() {
         addSubViews()
-        setupViewConstraints()
-        self.setupPodcastsNavigationBar()
-        self.setupPodcastsBottonActions()
+        setupBaseConstraints()
+        self.setupPlayListNavigationBar()
+        self.setupPlayListBottonActions()
         self.setupTitleLabelConstraints()
         self.setupDescriptionLabelConstraints()
     }
@@ -96,13 +96,12 @@ class StretchyHeaderView: UIView {
         addSubview(self.descriptionLabel)
     }
 
-    private func setupViewConstraints() {
+    private func setupBaseConstraints() {
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalTo: containerView.widthAnchor),
             centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             heightAnchor.constraint(equalTo: containerView.heightAnchor)
         ])
-
         containerView.widthAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         containerViewHeight = containerView.heightAnchor.constraint(equalTo: heightAnchor)
         containerViewHeight.isActive = true
@@ -114,7 +113,7 @@ class StretchyHeaderView: UIView {
         imageViewHeight.isActive = true
     }
 
-    private func setupPodcastsNavigationBar() {
+    private func setupPlayListNavigationBar() {
         NSLayoutConstraint.activate([
             self.playListNavigationBar.topAnchor.constraint(equalTo: self.topAnchor),
             self.playListNavigationBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -123,7 +122,7 @@ class StretchyHeaderView: UIView {
         ])
     }
 
-    private func setupPodcastsBottonActions() {
+    private func setupPlayListBottonActions() {
         NSLayoutConstraint.activate([
             self.playListBottomActions.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),
             self.playListBottomActions.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -143,7 +142,6 @@ class StretchyHeaderView: UIView {
 
     private func setupDescriptionLabelConstraints() {
         NSLayoutConstraint.activate([
-            //            self.descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             self.descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22),
             self.descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -22),
             self.descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20)
@@ -157,7 +155,6 @@ class StretchyHeaderView: UIView {
         containerView.clipsToBounds = offsetY <= 0
         imageViewBottom.constant = offsetY >= 0 ? 0 : -offsetY / 2
         imageViewHeight.constant = max(offsetY + scrollView.contentInset.top, scrollView.contentInset.top)
-        // gradientLayer.frame = self.imageView.frame
     }
 
     func setupGradientLayer() {
@@ -171,17 +168,29 @@ class StretchyHeaderView: UIView {
     func setPlaylistHeaderData(dataSource: PlaylistDataSource) {
         DispatchQueue.main.async {
             self.setupGradientLayer()
-            if let url = URL(string: dataSource.playlistImageUrl) {
-                let options: KingfisherOptionsInfo = [
-                    .transition(.fade(0.2)), // Add a fade transition when the image is loaded
-                    .scaleFactor(UIScreen.main.scale), // Consider the screen scale for the image
-                    .cacheOriginalImage // Cache the original image in addition to the processed one
-                ]
-                self.imageView.kf.setImage(with: url, options: options)
-            }
-
+            self.setImage(url: dataSource.playlistImageUrl)
             self.titleLabel.text = dataSource.playlistTitle
             self.descriptionLabel.text = dataSource.playListDescription
         }
+    }
+
+    func setImage(url: String) {
+        // Set the image using Kingfisher (replace "imageUrl" with your actual image URL)
+        self.imageView.kf.setImage(with: URL(string: url), completionHandler: { result in
+            switch result {
+            case let .success(value):
+                // Image is loaded successfully
+                // Resize the image to fit the UIImageView
+                let resizedImage = value.image.resized(to: self.imageView.bounds.size)
+
+                // Set the resized image to the UIImageView
+                self.imageView.image = resizedImage
+
+                print("Image loaded: \(value.source.url?.absoluteString ?? "")")
+            case let .failure(error):
+                // Handle error
+                print("Error loading image: \(error.localizedDescription)")
+            }
+        })
     }
 }

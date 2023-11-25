@@ -12,6 +12,7 @@ protocol LocalStorageKeysProtocol {
 
 protocol Storeable {
     var storeData: Data? { get }
+
     init?(storeData: Data?)
 }
 

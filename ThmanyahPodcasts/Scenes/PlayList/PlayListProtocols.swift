@@ -15,16 +15,19 @@ protocol PlayListViewProtocol: AnyObject {
     func setPlaylistHeaderData(dataSource: PlaylistDataSource)
     func hidePlaylistHeaderView()
     func reloadTableView()
+    func playEposide(dataSource: PodcastPlayer.Presentable)
+    func selectRow(at indexPath: IndexPath)
 }
 
 protocol PlayListPresenterProtocol {
     var view: PlayListViewProtocol? { get set }
-
-    func login()
     var didFetchedPlayList: Bool { get }
     var playListSectionHeaderDataSource: PlayListSectionHeaderDataSource? { get }
+
+    func login()
     func numberOfEposides() -> Int
     func configureEposidesCell(cell: EposideCellDataSourceProtocol, indexPath: IndexPath)
+    func playEposide(at indexPath: IndexPath)
 }
 
 protocol PlayListRouterProtocol {}

@@ -12,7 +12,6 @@ class PlayListBottomActions: UIView {
     private let shuffleButton: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-
         let attachment = NSTextAttachment()
         attachment.image = UIImage(systemName: "shuffle")?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
         let imageString = NSMutableAttributedString(attachment: attachment)

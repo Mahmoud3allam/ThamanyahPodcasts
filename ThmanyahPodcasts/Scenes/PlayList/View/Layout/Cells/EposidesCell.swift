@@ -35,7 +35,7 @@ class EposidesCell: UITableViewCell {
         label.font = typography.font
         label.textColor = typography.color
         label.numberOfLines = 0
-        label.text = "لماذا نتوقف شهرين قبل كأس العالم؟"
+        label.text = "              "
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -46,7 +46,7 @@ class EposidesCell: UITableViewCell {
         label.font = typography.font
         label.textColor = typography.color
         label.numberOfLines = 0
-        label.text = "الفجر"
+        label.text = "       "
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -57,7 +57,7 @@ class EposidesCell: UITableViewCell {
         label.font = typography.font
         label.textColor = typography.color
         label.numberOfLines = 0
-        label.text = "اكتوبر 2020 . 23 دقيقة"
+        label.text = "          "
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,13 +69,14 @@ class EposidesCell: UITableViewCell {
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
         button.backgroundColor = Colors.haileyBlue.color
         button.layer.cornerRadius = 32 / 2
+        button.addTarget(self, action: #selector(didTappedPlayButton), for: .touchUpInside)
         return button
     }()
 
     private let optionButton: UIButton = {
         var button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         button.setImage(Images.menu.image.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .clear
         button.layer.cornerRadius = 32 / 2
@@ -88,6 +89,8 @@ class EposidesCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+
+    var onTapPlay: (() -> Void)?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -167,11 +170,17 @@ class EposidesCell: UITableViewCell {
         ])
     }
 
+    @objc func didTappedPlayButton() {
+        self.onTapPlay?()
+    }
+
     func showSkeleton() {
         self.eposideImageView.enableSkeleton(enable: true)
         self.eposideTitleLabel.enableSkeleton(enable: true)
         self.podcastNameLabel.enableSkeleton(enable: true)
         self.podcastDateLabel.enableSkeleton(enable: true)
+        self.playButton.isHidden = true
+        self.optionButton.enableSkeleton(enable: true)
     }
 
     func hideSkeleton() {
@@ -179,6 +188,8 @@ class EposidesCell: UITableViewCell {
         self.eposideTitleLabel.enableSkeleton(enable: false)
         self.podcastNameLabel.enableSkeleton(enable: false)
         self.podcastDateLabel.enableSkeleton(enable: false)
+        self.playButton.isHidden = false
+        self.optionButton.enableSkeleton(enable: false)
     }
 }
 
@@ -186,15 +197,15 @@ extension EposidesCell: EposideCellDataSourceProtocol {
     func setData(dataSource: EposideCellDataSource) {
         if let url = URL(string: dataSource.imageUrl ?? "") {
             let options: KingfisherOptionsInfo = [
-                .transition(.fade(0.2)), // Add a fade transition when the image is loaded
-                .scaleFactor(UIScreen.main.scale), // Consider the screen scale for the image
-                .cacheOriginalImage // Cache the original image in addition to the processed one
+                .transition(.fade(0.2)),
+                .scaleFactor(UIScreen.main.scale),
+                .cacheOriginalImage
             ]
             self.eposideImageView.kf.setImage(with: url, options: options)
         }
         self.eposideTitleLabel.text = dataSource.title ?? ""
         self.podcastNameLabel.text = dataSource.name
-        self.podcastDateLabel.text = dataSource.date
+        self.podcastDateLabel.text = dataSource.displayableDateTimeInfo
         self.hideSkeleton()
     }
 }

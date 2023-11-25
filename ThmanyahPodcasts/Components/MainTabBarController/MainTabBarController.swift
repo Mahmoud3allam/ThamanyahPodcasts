@@ -8,24 +8,20 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    var hasHomeButton: Bool {
-        let window = UIApplication
-            .shared
-            .connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow }
-        guard let safeAreaBottom = window?.safeAreaInsets.bottom else {
-            return false
-        }
-        return safeAreaBottom <= 0
-    }
+    var expandedPlayerTopAnchor: NSLayoutConstraint?
+    var collapsedPlayerTopAnchor: NSLayoutConstraint?
+
+    lazy var podcastPlayer: PodcastPlayer = {
+        var player = PodcastPlayer()
+        player.translatesAutoresizingMaskIntoConstraints = false
+        player.style = PodcastPlayerStyle.PredefinedStyles.standard.value
+        return player
+    }()
 
     private let tabBarShadowView: UIView = {
         let view = UIView()
         view.backgroundColor = Colors.background.color
         view.clipsToBounds = true
-        view.applyDropShadow()
         return view
     }()
 
@@ -33,13 +29,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         configureViewControllers()
         configureTabBarAppearance()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if !hasHomeButton { setTabBarHeight(height: 90) }
-        tabBarShadowView.frame = tabBar.frame
-        if !hasHomeButton { setTabBarWidth(withMargin: 30) }
+        self.settingUpPlayerDetailsView()
     }
 
     private func configureViewControllers() {
@@ -57,15 +47,12 @@ class MainTabBarController: UITabBarController {
     }
 
     private func configureTabBarAppearance() {
-        if !hasHomeButton {
-            UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -6)
-        }
-        hideTabBarBorder()
-        addCustomTabBarView()
         setupTabBarFont()
         tabBar.barTintColor = .white
+        tabBar.backgroundColor = .white
         tabBar.tintColor = Colors.haileyBlue.color
         tabBar.isTranslucent = false
+        tabBar.applyDropShadow()
     }
 
     private func createNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
@@ -74,30 +61,6 @@ class MainTabBarController: UITabBarController {
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
         return navController
-    }
-
-    private func hideTabBarBorder() {
-        tabBar.backgroundImage = UIImage.from(color: .clear)
-        tabBar.shadowImage = UIImage()
-        tabBar.clipsToBounds = true
-    }
-
-    private func setTabBarWidth(withMargin margin: CGFloat) {
-        tabBar.frame.size.width = view.frame.width - (margin * 2)
-        tabBar.frame.origin.x = (margin * 2) / 2
-    }
-
-    private func setTabBarHeight(height: CGFloat) {
-        var newFrame = tabBar.frame
-        newFrame.size.height = height
-        newFrame.origin.y -= (height - tabBar.frame.size.height)
-        tabBar.frame = newFrame
-    }
-
-    private func addCustomTabBarView() {
-        tabBarShadowView.frame = tabBar.frame
-        view.addSubview(tabBarShadowView)
-        view.bringSubviewToFront(tabBar)
     }
 
     private func setupTabBarFont() {

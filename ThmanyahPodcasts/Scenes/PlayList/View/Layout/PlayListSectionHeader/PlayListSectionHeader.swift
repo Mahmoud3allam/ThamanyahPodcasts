@@ -68,16 +68,14 @@ class PlayListSectionHeader: UIView {
     private func setupTitleLabelConstraints() {
         NSLayoutConstraint.activate([
             self.titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            self.titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10),
-//            self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10)
         ])
     }
 
     private func setupTitleDescriptionConstraints() {
         NSLayoutConstraint.activate([
             self.descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.descriptionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10),
-//            self.descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.descriptionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10)
         ])
     }
 
@@ -85,7 +83,6 @@ class PlayListSectionHeader: UIView {
         NSLayoutConstraint.activate([
             self.sepratorView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             self.sepratorView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-
             self.sepratorView.heightAnchor.constraint(equalToConstant: 1),
             self.sepratorView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])

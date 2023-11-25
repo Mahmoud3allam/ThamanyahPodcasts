@@ -28,7 +28,7 @@ class PlayListContainerView: StackedScrollableContainerView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.allowsSelection = true
+        tableView.allowsSelection = false
         tableView.backgroundColor = Colors.background.color
         tableView.contentInset = UIEdgeInsets(top: -22, left: 0, bottom: 0, right: 0)
         tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -43,6 +43,7 @@ class PlayListContainerView: StackedScrollableContainerView {
     }()
 
     var tableViewHeightAnchor: NSLayoutConstraint?
+    var headerHeight: CGFloat = 400
 
     init(presenter: PlayListPresenterProtocol) {
         self.presenter = presenter
@@ -58,6 +59,7 @@ class PlayListContainerView: StackedScrollableContainerView {
     }
 
     private func layoutUserInterFace() {
+        self.scrollView.isScrollEnabled = false
         self.addSubViews()
         self.setupHeaderView()
         self.setupTableViewContainerViewConstraints()
@@ -68,13 +70,13 @@ class PlayListContainerView: StackedScrollableContainerView {
 
     private func setupHeaderView() {
         self.vStackView.addArrangedSubview(self.headerView)
-        self.headerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        self.headerView.heightAnchor.constraint(equalToConstant: self.headerHeight).isActive = true
         self.headerView.isHidden = true
     }
 
     private func setupTableViewContainerViewConstraints() {
         self.vStackView.addArrangedSubview(self.tableViewContainerView)
-        self.tableViewHeightAnchor = self.tableViewContainerView.heightAnchor.constraint(equalToConstant: (10 * 106) + 32)
+        self.tableViewHeightAnchor = self.tableViewContainerView.heightAnchor.constraint(equalToConstant: CGFloat((self.presenter.numberOfEposides() * 106) + 32))
         self.tableViewHeightAnchor?.isActive = true
     }
 
@@ -96,7 +98,7 @@ class PlayListContainerView: StackedScrollableContainerView {
     }
 
     func updateTableViewHeight() {
-        self.tableViewHeightAnchor?.constant = self.tableView.contentSize.height - 80
+        self.tableViewHeightAnchor?.constant = self.tableView.contentSize.height
     }
 
     func setPlaylistHeaderData(dataSource: PlaylistDataSource) {

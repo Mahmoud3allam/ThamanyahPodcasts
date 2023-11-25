@@ -7,7 +7,7 @@
 //
 // @Mahmoud Allam Templete ^_^
 import UIKit
-class PlayListViewController: UIViewController, PlayListViewProtocol {
+class PlayListViewController: UIViewController {
     var presenter: PlayListPresenterProtocol!
     lazy var containerView: PlayListContainerView = {
         var view = PlayListContainerView(presenter: self.presenter)
@@ -24,15 +24,27 @@ class PlayListViewController: UIViewController, PlayListViewProtocol {
         super.loadView()
         self.view = containerView
     }
+}
 
+extension PlayListViewController: PlayListViewProtocol {
     func showLoading() {
-        self.containerView.headerView.isHidden = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.containerView.headerView.isHidden = true
+        }
     }
 
     func hideLoading() {
-        self.containerView.headerView.isHidden = false
-        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5) {
-            self.containerView.layoutIfNeeded()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.containerView.headerView.isHidden = false
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5) {
+                self.containerView.layoutIfNeeded()
+            }
         }
     }
 
@@ -41,12 +53,38 @@ class PlayListViewController: UIViewController, PlayListViewProtocol {
     }
 
     func hidePlaylistHeaderView() {
-        self.containerView.headerView.isHidden = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.containerView.headerView.isHidden = true
+        }
     }
 
     func reloadTableView() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.containerView.scrollView.isScrollEnabled = true
+            self.containerView.tableView.allowsSelection = true
             self.containerView.reloadTableView()
+        }
+    }
+
+    func playEposide(dataSource: PodcastPlayer.Presentable) {
+        if let tabBarController = self.tabBarController as? MainTabBarController {
+            tabBarController.podcastPlayer.configure(presentable: dataSource)
+            tabBarController.expandPodcastPlayer()
+        }
+    }
+
+    func selectRow(at indexPath: IndexPath) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.containerView.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
     }
 }
