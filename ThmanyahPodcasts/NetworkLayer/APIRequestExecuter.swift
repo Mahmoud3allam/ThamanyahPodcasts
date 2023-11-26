@@ -2,8 +2,8 @@
 //  APIRequestExecuter.swift
 //  ThmanyahPodcasts
 //
-//  Created Arab Calibers on 23/11/2023.
-//  Copyright © 2023 ___ORGANIZATIONNAME___. All rights reserved.
+//  Created Mahmoud Allam on 23/11/2023.
+//  Copyright © 2023 https://github.com/Mahmoud3allam. All rights reserved.
 //
 // @Mahmoud Allam Templete ^_^
 import Alamofire

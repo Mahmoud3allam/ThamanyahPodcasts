@@ -2,7 +2,7 @@
 //  StretchyHeaderView.swift
 //  ThmanyahPodcasts
 //
-//  Created by Arab Calibers on 24/11/2023.
+//  Created by Mahmoud Allam on 24/11/2023.
 //
 
 import Kingfisher
@@ -175,7 +175,6 @@ class StretchyHeaderView: UIView {
     }
 
     func setImage(url: String) {
-        // Set the image using Kingfisher (replace "imageUrl" with your actual image URL)
         self.imageView.kf.setImage(with: URL(string: url), completionHandler: { result in
             switch result {
             case let .success(value):

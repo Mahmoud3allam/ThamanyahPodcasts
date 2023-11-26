@@ -2,7 +2,7 @@
 //  EposidesCell.swift
 //  ThmanyahPodcasts
 //
-//  Created by Arab Calibers on 24/11/2023.
+//  Created by Mahmoud Allam on 24/11/2023.
 //
 
 import Foundation
@@ -195,14 +195,7 @@ class EposidesCell: UITableViewCell {
 
 extension EposidesCell: EposideCellDataSourceProtocol {
     func setData(dataSource: EposideCellDataSource) {
-        if let url = URL(string: dataSource.imageUrl ?? "") {
-            let options: KingfisherOptionsInfo = [
-                .transition(.fade(0.2)),
-                .scaleFactor(UIScreen.main.scale),
-                .cacheOriginalImage
-            ]
-            self.eposideImageView.kf.setImage(with: url, options: options)
-        }
+        self.eposideImageView.setImage(from: dataSource.imageUrl)
         self.eposideTitleLabel.text = dataSource.title ?? ""
         self.podcastNameLabel.text = dataSource.name
         self.podcastDateLabel.text = dataSource.displayableDateTimeInfo

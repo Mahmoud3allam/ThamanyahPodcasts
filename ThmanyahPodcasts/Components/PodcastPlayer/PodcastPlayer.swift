@@ -2,7 +2,7 @@
 //  PodcastPlayer.swift
 //  ThmanyahPodcasts
 //
-//  Created by Arab Calibers on 24/11/2023.
+//  Created by Mahmoud Allam on 24/11/2023.
 //
 
 import AVKit
@@ -342,16 +342,8 @@ extension PodcastPlayer: PodcastPlayerDataSource {
             self.podcastImageView.image = image
             self.collapsedView.podcastImageView.image = image
         case let .url(imageUrl):
-            guard let url = URL(string: imageUrl) else {
-                return
-            }
-            let options: KingfisherOptionsInfo = [
-                .transition(.fade(0.2)),
-                .scaleFactor(UIScreen.main.scale),
-                .cacheOriginalImage
-            ]
-            self.podcastImageView.kf.setImage(with: url, options: options)
-            self.collapsedView.podcastImageView.kf.setImage(with: url, options: options)
+            self.collapsedView.podcastImageView.setImage(from: imageUrl)
+            self.podcastImageView.setImage(from: imageUrl)
         }
         self.controlsView.setPlayPauseImage(image: presentable.playIcon ?? UIImage(systemName: "play.fill"))
         self.controlsView.setBackwardImage(image: presentable.backwardIcon ?? UIImage(systemName: "gobackward.10"))

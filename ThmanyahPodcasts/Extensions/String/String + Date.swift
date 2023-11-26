@@ -2,7 +2,7 @@
 //  String + Date.swift
 //  ThmanyahPodcasts
 //
-//  Created by Arab Calibers on 25/11/2023.
+//  Created by Mahmoud Allam on 25/11/2023.
 //
 
 import Foundation
