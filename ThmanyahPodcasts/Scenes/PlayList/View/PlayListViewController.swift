@@ -72,7 +72,7 @@ extension PlayListViewController: PlayListViewProtocol {
         }
     }
 
-    func playEposide(dataSource: PodcastPlayer.Presentable) {
+    func playEpisode(dataSource: PodcastPlayer.Presentable) {
         if let tabBarController = self.tabBarController as? MainTabBarController {
             tabBarController.podcastPlayer.configure(presentable: dataSource)
             tabBarController.expandPodcastPlayer()

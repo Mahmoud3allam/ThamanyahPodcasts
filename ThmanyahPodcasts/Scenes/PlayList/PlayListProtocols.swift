@@ -15,7 +15,7 @@ protocol PlayListViewProtocol: AnyObject {
     func setPlaylistHeaderData(dataSource: PlaylistDataSource)
     func hidePlaylistHeaderView()
     func reloadTableView()
-    func playEposide(dataSource: PodcastPlayer.Presentable)
+    func playEpisode(dataSource: PodcastPlayer.Presentable)
     func selectRow(at indexPath: IndexPath)
 }
 
@@ -25,9 +25,9 @@ protocol PlayListPresenterProtocol {
     var playListSectionHeaderDataSource: PlayListSectionHeaderDataSource? { get }
 
     func login()
-    func numberOfEposides() -> Int
-    func configureEposidesCell(cell: EposideCellDataSourceProtocol, indexPath: IndexPath)
-    func playEposide(at indexPath: IndexPath)
+    func numberOfEpisodes() -> Int
+    func configureEpisodesCell(cell: EpisodeCellDataSourceProtocol, indexPath: IndexPath)
+    func playEpisode(at indexPath: IndexPath)
 }
 
 protocol PlayListRouterProtocol {}
@@ -49,6 +49,6 @@ protocol PlayListInteractorOutPutProtocol: AnyObject {
     func failedToFetchPlayList(errorMessage: String)
 }
 
-protocol EposideCellDataSourceProtocol {
-    func setData(dataSource: EposideCellDataSource)
+protocol EpisodeCellDataSourceProtocol {
+    func setData(dataSource: EpisodeCellDataSource)
 }

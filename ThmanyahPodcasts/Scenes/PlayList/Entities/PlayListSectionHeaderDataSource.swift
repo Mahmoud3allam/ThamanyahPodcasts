@@ -12,7 +12,7 @@ struct PlayListSectionHeaderDataSource {
     var totalSeconds: Int?
 
     func getStringToDisplay() -> String {
-        let countIndicator = "Eposide".localize
+        let countIndicator = "Episode".localize
         let countToDisplay = "\(count ?? 0) \(countIndicator)"
         var durationToDisplay = ""
         if let totalSeconds = self.totalSeconds {

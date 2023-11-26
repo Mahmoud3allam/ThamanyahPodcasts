@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct EposideCellDataSource {
+struct EpisodeCellDataSource {
     var id: String?
     var imageUrl: String?
     var audioUrl: String?

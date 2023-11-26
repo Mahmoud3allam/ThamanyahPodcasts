@@ -15,19 +15,19 @@ extension PlayListContainerView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        self.presenter.numberOfEposides()
+        self.presenter.numberOfEpisodes()
     }
 
     func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(EposidesCell.self), for: indexPath) as? EposidesCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(EpisodesCell.self), for: indexPath) as? EpisodesCell else {
             return UITableViewCell()
         }
-        self.presenter.configureEposidesCell(cell: cell, indexPath: indexPath)
+        self.presenter.configureEpisodesCell(cell: cell, indexPath: indexPath)
         cell.onTapPlay = { [weak self] in
             guard let self = self else {
                 return
             }
-            self.presenter.playEposide(at: indexPath)
+            self.presenter.playEpisode(at: indexPath)
         }
         return cell
     }
@@ -39,7 +39,7 @@ extension PlayListContainerView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, viewForHeaderInSection _: Int) -> UIView? {
         let view = PlayListSectionHeader()
         if let sectionHeaderData = self.presenter.playListSectionHeaderDataSource {
-            view.titleLabel.text = "Eposides".localize
+            view.titleLabel.text = "Episodes".localize
             view.descriptionLabel.text = sectionHeaderData.getStringToDisplay()
         }
         return view
@@ -50,7 +50,7 @@ extension PlayListContainerView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.presenter.playEposide(at: indexPath)
+        self.presenter.playEpisode(at: indexPath)
     }
 
     func tableView(_: UITableView, viewForFooterInSection _: Int) -> UIView? {

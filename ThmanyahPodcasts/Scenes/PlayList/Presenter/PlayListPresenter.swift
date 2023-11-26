@@ -12,7 +12,7 @@ class PlayListPresenter: PlayListPresenterProtocol {
     weak var view: PlayListViewProtocol?
     private let interactor: PlayListInteractorInPutProtocol
     private let router: PlayListRouterProtocol
-    var eposidesDataSource = [EposideCellDataSource]()
+    var EpisodesDataSource = [EpisodeCellDataSource]()
     var playListSectionHeaderDataSource: PlayListSectionHeaderDataSource?
     var didFetchedPlayList: Bool = false
 
@@ -28,19 +28,19 @@ class PlayListPresenter: PlayListPresenterProtocol {
                               password: "123123aJ*")
     }
 
-    func numberOfEposides() -> Int {
-        return eposidesDataSource.count > 0 ? eposidesDataSource.count : 10
+    func numberOfEpisodes() -> Int {
+        return EpisodesDataSource.count > 0 ? EpisodesDataSource.count : 10
     }
 
-    func configureEposidesCell(cell: EposideCellDataSourceProtocol, indexPath: IndexPath) {
-        guard indexPath.item <= self.eposidesDataSource.count - 1 else {
+    func configureEpisodesCell(cell: EpisodeCellDataSourceProtocol, indexPath: IndexPath) {
+        guard indexPath.item <= self.EpisodesDataSource.count - 1 else {
             return
         }
-        cell.setData(dataSource: self.eposidesDataSource[indexPath.item])
+        cell.setData(dataSource: self.EpisodesDataSource[indexPath.item])
     }
 
-    func playEposide(at indexPath: IndexPath) {
-        guard let episode = eposidesDataSource[safe: indexPath.item] else {
+    func playEpisode(at indexPath: IndexPath) {
+        guard let episode = EpisodesDataSource[safe: indexPath.item] else {
             return
         }
 
@@ -52,7 +52,7 @@ class PlayListPresenter: PlayListPresenterProtocol {
             pocCastImage: .url(episode.imageUrl ?? "")
         )
 
-        view?.playEposide(dataSource: playerDataSource)
+        view?.playEpisode(dataSource: playerDataSource)
         view?.selectRow(at: indexPath)
     }
 }
@@ -68,15 +68,15 @@ extension PlayListPresenter: PlayListInteractorOutPutProtocol {
     }
 
     func didFetchedPlayListSucsessfully(playListDetails: PlayListDetails) {
-        if let eposides = playListDetails.episodes {
-            self.eposidesDataSource = eposides.map { eposide in
-                EposideCellDataSource(id: eposide.id,
-                                      imageUrl: eposide.image,
-                                      audioUrl: eposide.audioLink,
-                                      title: eposide.name,
-                                      name: eposide.podcastName,
-                                      date: eposide.createdAt,
-                                      totalSeconds: eposide.durationInSeconds)
+        if let Episodes = playListDetails.episodes {
+            self.EpisodesDataSource = Episodes.map { Episode in
+                EpisodeCellDataSource(id: Episode.id,
+                                      imageUrl: Episode.image,
+                                      audioUrl: Episode.audioLink,
+                                      title: Episode.name,
+                                      name: Episode.podcastName,
+                                      date: Episode.createdAt,
+                                      totalSeconds: Episode.durationInSeconds)
             }
         }
         if let playList = playListDetails.playlist {

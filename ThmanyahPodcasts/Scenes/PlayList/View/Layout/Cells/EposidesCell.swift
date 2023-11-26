@@ -8,8 +8,8 @@
 import Foundation
 import Kingfisher
 import UIKit
-class EposidesCell: UITableViewCell {
-    let eposideImageView: UIImageView = {
+class EpisodesCell: UITableViewCell {
+    let EpisodeImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -29,7 +29,7 @@ class EposidesCell: UITableViewCell {
         return stackView
     }()
 
-    var eposideTitleLabel: UILabel = {
+    var EpisodeTitleLabel: UILabel = {
         var label = UILabel()
         let typography = Typography(size: .caption, weight: .medium, color: .black)
         label.font = typography.font
@@ -105,7 +105,7 @@ class EposidesCell: UITableViewCell {
     }
 
     private func addSubViews() {
-        self.contentView.addSubview(self.eposideImageView)
+        self.contentView.addSubview(self.EpisodeImageView)
         self.contentView.addSubview(self.vStackView)
         self.contentView.addSubview(self.sepratorView)
         self.contentView.addSubview(self.optionButton)
@@ -114,30 +114,30 @@ class EposidesCell: UITableViewCell {
 
     private func layotUserInterFace() {
         self.addSubViews()
-        self.setupEposideImageViewConstraints()
+        self.setupEpisodeImageViewConstraints()
         self.setupVStackViewConstraints()
         self.setupOptionButtonConstraints()
         self.setupPlayButtonConstraints()
         self.setupSepratorViewConstraints()
     }
 
-    private func setupEposideImageViewConstraints() {
+    private func setupEpisodeImageViewConstraints() {
         NSLayoutConstraint.activate([
-            self.eposideImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-            self.eposideImageView.heightAnchor.constraint(equalToConstant: 76),
-            self.eposideImageView.widthAnchor.constraint(equalToConstant: 76),
-            self.eposideImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+            self.EpisodeImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            self.EpisodeImageView.heightAnchor.constraint(equalToConstant: 76),
+            self.EpisodeImageView.widthAnchor.constraint(equalToConstant: 76),
+            self.EpisodeImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
     }
 
     private func setupVStackViewConstraints() {
         NSLayoutConstraint.activate([
-            self.vStackView.leadingAnchor.constraint(equalTo: self.eposideImageView.trailingAnchor, constant: 15),
+            self.vStackView.leadingAnchor.constraint(equalTo: self.EpisodeImageView.trailingAnchor, constant: 15),
             self.vStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
             self.vStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -20),
             self.vStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -85)
         ])
-        self.vStackView.addArrangedSubview(self.eposideTitleLabel)
+        self.vStackView.addArrangedSubview(self.EpisodeTitleLabel)
         self.vStackView.addArrangedSubview(self.podcastNameLabel)
         self.vStackView.addArrangedSubview(self.podcastDateLabel)
     }
@@ -147,7 +147,7 @@ class EposidesCell: UITableViewCell {
             self.optionButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             self.optionButton.heightAnchor.constraint(equalToConstant: 32),
             self.optionButton.widthAnchor.constraint(equalToConstant: 32),
-            self.optionButton.topAnchor.constraint(equalTo: self.eposideTitleLabel.topAnchor, constant: 0)
+            self.optionButton.topAnchor.constraint(equalTo: self.EpisodeTitleLabel.topAnchor, constant: 0)
         ])
     }
 
@@ -175,8 +175,8 @@ class EposidesCell: UITableViewCell {
     }
 
     func showSkeleton() {
-        self.eposideImageView.enableSkeleton(enable: true)
-        self.eposideTitleLabel.enableSkeleton(enable: true)
+        self.EpisodeImageView.enableSkeleton(enable: true)
+        self.EpisodeTitleLabel.enableSkeleton(enable: true)
         self.podcastNameLabel.enableSkeleton(enable: true)
         self.podcastDateLabel.enableSkeleton(enable: true)
         self.playButton.isHidden = true
@@ -184,8 +184,8 @@ class EposidesCell: UITableViewCell {
     }
 
     func hideSkeleton() {
-        self.eposideImageView.enableSkeleton(enable: false)
-        self.eposideTitleLabel.enableSkeleton(enable: false)
+        self.EpisodeImageView.enableSkeleton(enable: false)
+        self.EpisodeTitleLabel.enableSkeleton(enable: false)
         self.podcastNameLabel.enableSkeleton(enable: false)
         self.podcastDateLabel.enableSkeleton(enable: false)
         self.playButton.isHidden = false
@@ -193,10 +193,10 @@ class EposidesCell: UITableViewCell {
     }
 }
 
-extension EposidesCell: EposideCellDataSourceProtocol {
-    func setData(dataSource: EposideCellDataSource) {
-        self.eposideImageView.setImage(from: dataSource.imageUrl)
-        self.eposideTitleLabel.text = dataSource.title ?? ""
+extension EpisodesCell: EpisodeCellDataSourceProtocol {
+    func setData(dataSource: EpisodeCellDataSource) {
+        self.EpisodeImageView.setImage(from: dataSource.imageUrl)
+        self.EpisodeTitleLabel.text = dataSource.title ?? ""
         self.podcastNameLabel.text = dataSource.name
         self.podcastDateLabel.text = dataSource.displayableDateTimeInfo
         self.hideSkeleton()

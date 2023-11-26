@@ -34,7 +34,7 @@ class PlayListContainerView: StackedScrollableContainerView {
         tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(EposidesCell.self, forCellReuseIdentifier: NSStringFromClass(EposidesCell.self))
+        tableView.register(EpisodesCell.self, forCellReuseIdentifier: NSStringFromClass(EpisodesCell.self))
         tableView.clipsToBounds = true
         tableView.isScrollEnabled = false
         tableView.layer.cornerRadius = 12
@@ -76,7 +76,7 @@ class PlayListContainerView: StackedScrollableContainerView {
 
     private func setupTableViewContainerViewConstraints() {
         self.vStackView.addArrangedSubview(self.tableViewContainerView)
-        self.tableViewHeightAnchor = self.tableViewContainerView.heightAnchor.constraint(equalToConstant: CGFloat((self.presenter.numberOfEposides() * 106) + 32))
+        self.tableViewHeightAnchor = self.tableViewContainerView.heightAnchor.constraint(equalToConstant: CGFloat((self.presenter.numberOfEpisodes() * 106) + 32))
         self.tableViewHeightAnchor?.isActive = true
     }
 
