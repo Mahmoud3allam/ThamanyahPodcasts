@@ -34,6 +34,9 @@ protocol PlayListRouterProtocol {}
 
 protocol PlayListInteractorInPutProtocol {
     var presenter: PlayListInteractorOutPutProtocol? { get set }
+    var playListWorker: PlayListWorkerProtocol? { get set }
+    var authWorker: AuthWorkerProtocol? { get set }
+    var storage: LocalStorageProtocol? { get set }
 
     func login(email: String, password: String)
     func fetchPlayList()

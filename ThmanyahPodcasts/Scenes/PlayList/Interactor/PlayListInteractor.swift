@@ -9,9 +9,8 @@
 import Foundation
 class PlayListInteractor: PlayListInteractorInPutProtocol {
     weak var presenter: PlayListInteractorOutPutProtocol?
-
-    var authWorker: AuthWorker?
-    var playListWorker: PlayListWorker?
+    var authWorker: AuthWorkerProtocol?
+    var playListWorker: PlayListWorkerProtocol?
     var storage: LocalStorageProtocol?
 
     func login(email: String, password: String) {
