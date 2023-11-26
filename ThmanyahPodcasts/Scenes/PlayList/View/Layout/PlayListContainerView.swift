@@ -76,7 +76,9 @@ class PlayListContainerView: StackedScrollableContainerView {
 
     private func setupTableViewContainerViewConstraints() {
         self.vStackView.addArrangedSubview(self.tableViewContainerView)
-        self.tableViewHeightAnchor = self.tableViewContainerView.heightAnchor.constraint(equalToConstant: CGFloat((self.presenter.numberOfEpisodes() * 106) + 32))
+        let paddingSpace = 32
+        let rowHeight = 106
+        self.tableViewHeightAnchor = self.tableViewContainerView.heightAnchor.constraint(equalToConstant: CGFloat((self.presenter.numberOfEpisodes() * rowHeight) + paddingSpace))
         self.tableViewHeightAnchor?.isActive = true
     }
 
