@@ -47,23 +47,7 @@ The app is built on the VIPER architecture, providing a structured and scalable 
 5. **Alamofire:**
    - Handles networking tasks for seamless API interactions.
 
-## What I Will Add If I Had More Time
-
-1. **Enhanced Podcast Player Functionalities:**
-   - Explore additional features to enrich the podcast player experience.
-
-2. **Release PodcastPlayer as a CocoaPod:**
-   - After a bit of revamping, release the PodcastPlayer as a reusable CocoaPod.
-
-3. **Unit Tests:**
-   - Implement unit tests for robust code validation.
-
-4. **Offline Playing Episodes:**
-   - Introduce a feature for offline playing of episodes.
-
-5. **Background Playing Feature:**
-   - Add a background playing feature for uninterrupted listening.
-
+     
 ## Getting Started
 
 1. Clone the repository.
