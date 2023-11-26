@@ -28,7 +28,7 @@ class PodcastPlayer: UIView {
         return view
     }()
 
-    lazy var closeButton: UIButton = {
+    lazy var dismissButton: UIButton = {
         var button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
@@ -55,7 +55,7 @@ class PodcastPlayer: UIView {
         return slider
     }()
 
-    var hStackView: UIStackView = {
+    var lenthLabelsStackView: UIStackView = {
         var stack = UIStackView()
         stack.alignment = .fill
         stack.distribution = .fill
@@ -103,9 +103,10 @@ class PodcastPlayer: UIView {
         return view
     }()
 
-    var controlsView: PlayerControlsView = {
+    lazy var controlsView: PlayerControlsView = {
         var view = PlayerControlsView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         return view
     }()
 
@@ -165,33 +166,29 @@ class PodcastPlayer: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
     private func layoutUserInterFace() {
         addSubViews()
-        addContainerView()
-        addDismissButton()
-        addPodcastImageView()
-        addProgressSlider()
-        addLenthStack()
-        addPodcastTitleLabel()
-        addPodcastAutherLabel()
-        addcontrolsViewContainer()
-        addControlsView()
-        addSoundSlider()
-        addVolumeUpButton()
-        addVolumeDownButton()
-        addCollapsedView()
+        setupContainerViewConstraints()
+        setupDismissButtonConstraints()
+        setupPodcastImageViewConstraints()
+        setupProgressSliderConstraints()
+        setupLenthLabelsStackViewConstraints()
+        setupPodcastTitleLabelConstraints()
+        setupPodcastAutherLabelConstraints()
+        setupControlsContainerViewConstraints()
+        setupControlsViewConstraints()
+        setupSoundSliderConstraints()
+        setupVolumeUpButtonConstraints()
+        setupVolumeDownButtonConstraints()
+        setupCollapsedViewConstraints()
     }
 
     private func addSubViews() {
         self.addSubview(self.containerView)
-        self.containerView.addSubview(closeButton)
+        self.containerView.addSubview(dismissButton)
         self.containerView.addSubview(podcastImageView)
         self.containerView.addSubview(progressSlider)
-        self.containerView.addSubview(hStackView)
+        self.containerView.addSubview(lenthLabelsStackView)
         self.containerView.addSubview(podcastTitleLabel)
         self.containerView.addSubview(podcastAuther)
         self.containerView.addSubview(controlsViewContainer)
@@ -206,9 +203,9 @@ class PodcastPlayer: UIView {
         self.containerView.backgroundColor = style.backgroundColor
         self.collapsedView.backgroundColor = style.minimizedViewBackground ?? style.backgroundColor
         if let dismissButtonTypography = style.dismissButtonTypography {
-            self.closeButton.titleLabel?.font = dismissButtonTypography.font
-            self.closeButton.titleLabel?.textColor = dismissButtonTypography.color
-            self.closeButton.tintColor = dismissButtonTypography.color
+            self.dismissButton.titleLabel?.font = dismissButtonTypography.font
+            self.dismissButton.titleLabel?.textColor = dismissButtonTypography.color
+            self.dismissButton.tintColor = dismissButtonTypography.color
         }
         self.podcastImageView.contentMode = style.podcastImageContentMode ?? .scaleAspectFill
         if let titleLabelTypography = style.titleLabelTypography {
