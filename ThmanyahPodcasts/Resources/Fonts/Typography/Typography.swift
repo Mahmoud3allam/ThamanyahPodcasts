@@ -14,12 +14,6 @@ public struct Typography {
     public var color: UIColor?
     public var alpha: CGFloat? = 1
 
-    /// Initialize a new DDFont instance with the provided settings.
-    /// - Parameters:
-    ///   - size: The size of the font.
-    ///   - weight: The weight or thickness of the font.
-    ///   - color: The color of the font.
-    ///   - alpha: the alpha needed for the color
     public init(size: FontSize,
                 weight: FontWeight,
                 color: UIColor? = .clear,
@@ -31,9 +25,6 @@ public struct Typography {
         self.alpha = alpha
     }
 
-    /// Get the UIFont instance based on the stored `size` and `weight`.
-    /// If the specified font is not available, it falls back to the system font with a default size of 15.
-    /// - Returns: The corresponding UIFont instance.
     public var font: UIFont {
         UIFont(name: weight.rawValue, size: size.rawValue) ?? UIFont.systemFont(ofSize: 15)
     }

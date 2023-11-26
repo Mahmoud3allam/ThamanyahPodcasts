@@ -1,5 +1,5 @@
 //
-//  LocalizationLayer.swift
+//  LocalizationManager.swift
 //  ThmanyahPodcasts
 //
 //  Created by Mahmoud Allam on 23/11/2023.

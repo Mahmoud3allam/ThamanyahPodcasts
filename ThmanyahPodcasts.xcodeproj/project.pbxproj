@@ -36,7 +36,7 @@
 		CC2C304B2B0FD9AD00467D67 /* FontWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304A2B0FD9AD00467D67 /* FontWeight.swift */; };
 		CC2C304D2B0FD9C500467D67 /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304C2B0FD9C500467D67 /* FontSize.swift */; };
 		CC2C30502B0FDB0200467D67 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C304F2B0FDB0200467D67 /* MainTabBarController.swift */; };
-		CC2C30532B0FDBE800467D67 /* LocalizationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */; };
+		CC2C30532B0FDBE800467D67 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30522B0FDBE800467D67 /* LocalizationManager.swift */; };
 		CC2C30592B0FDF0900467D67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC2C305B2B0FDF0900467D67 /* Localizable.strings */; };
 		CC2C30612B0FE3BD00467D67 /* PlayListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30602B0FE3BD00467D67 /* PlayListWorker.swift */; };
 		CC2C30652B0FE3DE00467D67 /* AuthWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C30642B0FE3DE00467D67 /* AuthWorker.swift */; };
@@ -144,7 +144,7 @@
 		CC2C304A2B0FD9AD00467D67 /* FontWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWeight.swift; sourceTree = "<group>"; };
 		CC2C304C2B0FD9C500467D67 /* FontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSize.swift; sourceTree = "<group>"; };
 		CC2C304F2B0FDB0200467D67 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationLayer.swift; sourceTree = "<group>"; };
+		CC2C30522B0FDBE800467D67 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		CC2C30542B0FDD1600467D67 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		CC2C30562B0FDE8500467D67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		CC2C305A2B0FDF0900467D67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -384,13 +384,13 @@
 			path = MainTabBarController;
 			sourceTree = "<group>";
 		};
-		CC2C30512B0FDBE100467D67 /* LocalizationLayer */ = {
+		CC2C30512B0FDBE100467D67 /* LocalizationManager */ = {
 			isa = PBXGroup;
 			children = (
-				CC2C30522B0FDBE800467D67 /* LocalizationLayer.swift */,
+				CC2C30522B0FDBE800467D67 /* LocalizationManager.swift */,
 				CC2C305B2B0FDF0900467D67 /* Localizable.strings */,
 			);
-			path = LocalizationLayer;
+			path = LocalizationManager;
 			sourceTree = "<group>";
 		};
 		CC2C30622B0FE3C300467D67 /* PlayListWorker */ = {
@@ -620,6 +620,24 @@
 			path = UIImageView;
 			sourceTree = "<group>";
 		};
+		CC5969C22B12F15700880731 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C300E2B0FCB3B00467D67 /* Workers */,
+				CC2C2FE12B0FC6D300467D67 /* NetworkLayer */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CC5969C32B12F17200880731 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CC2C306E2B10215C00467D67 /* UserDefaultManager */,
+				CC2C30512B0FDBE100467D67 /* LocalizationManager */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		CC7189352B1240020026674E /* Int */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,17 +696,15 @@
 		CCBE9AD72B0FB8350054E11D /* ThmanyahPodcasts */ = {
 			isa = PBXGroup;
 			children = (
-				CC2C306E2B10215C00467D67 /* UserDefaultManager */,
-				CC2C30512B0FDBE100467D67 /* LocalizationLayer */,
+				CC2C2FC52B0FC38300467D67 /* .swiftlint.yml */,
+				CC2C2FDF2B0FC6A900467D67 /* .swiftformat */,
 				CC2C301B2B0FCE8700467D67 /* swiftgen.yml */,
+				CC2C2FF42B0FC95900467D67 /* Scenes */,
+				CC5969C32B12F17200880731 /* Utils */,
+				CC5969C22B12F15700880731 /* Network */,
 				CC2C300F2B0FCB3F00467D67 /* Extensions */,
-				CC2C300E2B0FCB3B00467D67 /* Workers */,
 				CC2C300C2B0FCA6300467D67 /* Resources */,
 				CC2C300B2B0FCA5900467D67 /* Components */,
-				CC2C2FF42B0FC95900467D67 /* Scenes */,
-				CC2C2FE12B0FC6D300467D67 /* NetworkLayer */,
-				CC2C2FDF2B0FC6A900467D67 /* .swiftformat */,
-				CC2C2FC52B0FC38300467D67 /* .swiftlint.yml */,
 				CCBE9AD82B0FB8350054E11D /* AppDelegate.swift */,
 				CCBE9AE12B0FB8380054E11D /* Assets.xcassets */,
 				CCBE9AE32B0FB8380054E11D /* LaunchScreen.storyboard */,
@@ -1075,7 +1091,7 @@
 				CCBE9AD92B0FB8350054E11D /* AppDelegate.swift in Sources */,
 				CC58CD352B1104A100BE01CF /* EposideCellDataSource.swift in Sources */,
 				CC2C30692B0FE64F00467D67 /* UserResponse.swift in Sources */,
-				CC2C30532B0FDBE800467D67 /* LocalizationLayer.swift in Sources */,
+				CC2C30532B0FDBE800467D67 /* LocalizationManager.swift in Sources */,
 				CC58CD452B110DA100BE01CF /* PlayListInteractor.swift in Sources */,
 				CC2C30722B10250700467D67 /* UserDefaultsKeys.swift in Sources */,
 				CC2C30332B0FD83700467D67 /* Images.swift in Sources */,
