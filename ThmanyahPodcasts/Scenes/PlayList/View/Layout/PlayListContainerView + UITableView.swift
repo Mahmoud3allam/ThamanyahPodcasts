@@ -53,6 +53,10 @@ extension PlayListContainerView: UITableViewDelegate, UITableViewDataSource {
         self.presenter.playEposide(at: indexPath)
     }
 
+    func tableView(_: UITableView, viewForFooterInSection _: Int) -> UIView? {
+        return nil
+    }
+
     func tableView(_: UITableView, heightForFooterInSection _: Int) -> CGFloat {
         return 0
     }
