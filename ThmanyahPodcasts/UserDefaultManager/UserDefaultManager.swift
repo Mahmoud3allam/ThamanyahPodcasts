@@ -17,22 +17,21 @@ protocol Storeable {
 }
 
 protocol LocalStorageProtocol {
-    func value<T>(key: LocalStorageKeysProtocol) -> T?
-    func write<T>(key: LocalStorageKeysProtocol, value: T?)
+    func value<ValueType>(key: LocalStorageKeysProtocol) -> ValueType?
+    func write<ValueType>(key: LocalStorageKeysProtocol, value: ValueType?)
     func remove(key: LocalStorageKeysProtocol)
-
-    func valueStoreable<T>(key: LocalStorageKeysProtocol) -> T? where T: Storeable
-    func writeStoreable<T>(key: LocalStorageKeysProtocol, value: T?) where T: Storeable
+    func valueStoreable<StoreableType>(key: LocalStorageKeysProtocol) -> StoreableType? where StoreableType: Storeable
+    func writeStoreable<StoreableType>(key: LocalStorageKeysProtocol, value: StoreableType?) where StoreableType: Storeable
 }
 
 class UserDefaultManager: LocalStorageProtocol {
     fileprivate let userDefaults: UserDefaults = .standard
 
-    func value<T>(key: LocalStorageKeysProtocol) -> T? {
-        return self.userDefaults.object(forKey: key.rawValue) as? T
+    func value<ValueType>(key: LocalStorageKeysProtocol) -> ValueType? {
+        return self.userDefaults.object(forKey: key.rawValue) as? ValueType
     }
 
-    func write<T>(key: LocalStorageKeysProtocol, value: T?) {
+    func write<ValueType>(key: LocalStorageKeysProtocol, value: ValueType?) {
         self.userDefaults.set(value, forKey: key.rawValue)
     }
 
@@ -40,12 +39,12 @@ class UserDefaultManager: LocalStorageProtocol {
         self.userDefaults.set(nil, forKey: key.rawValue)
     }
 
-    func valueStoreable<T>(key: LocalStorageKeysProtocol) -> T? where T: Storeable {
+    func valueStoreable<StoreableType>(key: LocalStorageKeysProtocol) -> StoreableType? where StoreableType: Storeable {
         let data: Data? = self.userDefaults.data(forKey: key.rawValue)
-        return T(storeData: data)
+        return StoreableType(storeData: data)
     }
 
-    func writeStoreable<T>(key: LocalStorageKeysProtocol, value: T?) where T: Storeable {
+    func writeStoreable<StoreableType>(key: LocalStorageKeysProtocol, value: StoreableType?) where StoreableType: Storeable {
         self.userDefaults.set(value?.storeData, forKey: key.rawValue)
     }
 }
