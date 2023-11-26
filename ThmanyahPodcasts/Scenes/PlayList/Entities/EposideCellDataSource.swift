@@ -13,7 +13,7 @@ struct EposideCellDataSource {
     var title: String?
     var name: String?
     var date: String?
-    var totalSeconts: Int?
+    var totalSeconds: Int?
 
     var displayableDateTimeInfo: String {
         return self.dateToDisplay() + " . " + self.durationToDisplay()
@@ -26,6 +26,6 @@ struct EposideCellDataSource {
     }
 
     private func durationToDisplay() -> String {
-        return totalSeconts?.convertSecondsToHrMinutes(style: .full) ?? ""
+        return totalSeconds?.convertSecondsToHrMinutes(style: .full) ?? ""
     }
 }

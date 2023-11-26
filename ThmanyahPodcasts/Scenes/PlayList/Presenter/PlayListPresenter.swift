@@ -40,17 +40,20 @@ class PlayListPresenter: PlayListPresenterProtocol {
     }
 
     func playEposide(at indexPath: IndexPath) {
-        guard indexPath.item <= self.eposidesDataSource.count - 1 else {
+        guard let episode = eposidesDataSource[safe: indexPath.item] else {
             return
         }
-        let eposideToPlayer = self.eposidesDataSource[indexPath.item]
-        let podcastPlayerDataSource = PodcastPlayer.Presentable(podcastId: eposideToPlayer.id ?? "",
-                                                                podcastUrl: eposideToPlayer.audioUrl ?? "",
-                                                                podCastTitle: eposideToPlayer.title ?? "",
-                                                                podCastAuther: eposideToPlayer.name ?? "",
-                                                                pocCastImage: .url(eposideToPlayer.imageUrl ?? ""))
-        self.view?.playEposide(dataSource: podcastPlayerDataSource)
-        self.view?.selectRow(at: indexPath)
+
+        let playerDataSource = PodcastPlayer.Presentable(
+            podcastId: episode.id ?? "",
+            podcastUrl: episode.audioUrl ?? "",
+            podCastTitle: episode.title ?? "",
+            podCastAuther: episode.name ?? "",
+            pocCastImage: .url(episode.imageUrl ?? "")
+        )
+
+        view?.playEposide(dataSource: playerDataSource)
+        view?.selectRow(at: indexPath)
     }
 }
 
@@ -73,7 +76,7 @@ extension PlayListPresenter: PlayListInteractorOutPutProtocol {
                                       title: eposide.name,
                                       name: eposide.podcastName,
                                       date: eposide.createdAt,
-                                      totalSeconts: eposide.durationInSeconds)
+                                      totalSeconds: eposide.durationInSeconds)
             }
         }
         if let playList = playListDetails.playlist {

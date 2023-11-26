@@ -78,6 +78,7 @@
 		CC5969B62B12751600880731 /* PodcastPlayer + PlayerControlsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5969B52B12751600880731 /* PodcastPlayer + PlayerControlsViewDelegate.swift */; };
 		CC5969B82B12754F00880731 /* PodcastPlayer + Sliders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5969B72B12754F00880731 /* PodcastPlayer + Sliders.swift */; };
 		CC5969BB2B127AD400880731 /* UIImage + Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5969BA2B127AD400880731 /* UIImage + Resize.swift */; };
+		CC5969BE2B12E9C200880731 /* Collection + Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5969BD2B12E9C200880731 /* Collection + Safe.swift */; };
 		CC7189372B1240150026674E /* Int + TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7189362B1240150026674E /* Int + TimeInterval.swift */; };
 		CC71893A2B1241CA0026674E /* String + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7189392B1241CA0026674E /* String + Date.swift */; };
 		CC71893D2B124C880026674E /* Date + Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC71893C2B124C880026674E /* Date + Common.swift */; };
@@ -187,6 +188,7 @@
 		CC5969B52B12751600880731 /* PodcastPlayer + PlayerControlsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastPlayer + PlayerControlsViewDelegate.swift"; sourceTree = "<group>"; };
 		CC5969B72B12754F00880731 /* PodcastPlayer + Sliders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastPlayer + Sliders.swift"; sourceTree = "<group>"; };
 		CC5969BA2B127AD400880731 /* UIImage + Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Resize.swift"; sourceTree = "<group>"; };
+		CC5969BD2B12E9C200880731 /* Collection + Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection + Safe.swift"; sourceTree = "<group>"; };
 		CC7189362B1240150026674E /* Int + TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + TimeInterval.swift"; sourceTree = "<group>"; };
 		CC7189392B1241CA0026674E /* String + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Date.swift"; sourceTree = "<group>"; };
 		CC71893C2B124C880026674E /* Date + Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Common.swift"; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		CC2C300F2B0FCB3F00467D67 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CC5969BC2B12E9BA00880731 /* Collection */,
 				CC5969B92B127ACA00880731 /* UIImage */,
 				CC71893B2B124C7E0026674E /* Date */,
 				CC7189382B1241C00026674E /* String */,
@@ -596,6 +599,14 @@
 				CC5969BA2B127AD400880731 /* UIImage + Resize.swift */,
 			);
 			path = UIImage;
+			sourceTree = "<group>";
+		};
+		CC5969BC2B12E9BA00880731 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				CC5969BD2B12E9C200880731 /* Collection + Safe.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		CC7189352B1240020026674E /* Int */ = {
@@ -1024,6 +1035,7 @@
 				CC5969B82B12754F00880731 /* PodcastPlayer + Sliders.swift in Sources */,
 				CC95F3902B126F96004DC186 /* PodcastPlayer + Gestures.swift in Sources */,
 				CC2C306B2B0FEF7300467D67 /* BaseAPIRequestResponseBusinessErrorType.swift in Sources */,
+				CC5969BE2B12E9C200880731 /* Collection + Safe.swift in Sources */,
 				CC7189372B1240150026674E /* Int + TimeInterval.swift in Sources */,
 				CC2C308E2B10D65E00467D67 /* PlayListBottomActions.swift in Sources */,
 				CC58CD612B1131AF00BE01CF /* PodcastPlayer + Presentable.swift in Sources */,
