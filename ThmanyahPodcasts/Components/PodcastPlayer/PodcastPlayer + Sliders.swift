@@ -20,7 +20,7 @@ extension PodcastPlayer {
         self.player.seek(to: seekingTime)
         self.player.pause()
         self.controlsView.setPlayPauseImage(image: self.presentable?.playIcon ?? UIImage(systemName: "play.fill"))
-        self.transformPodcastImageView()
+        self.applyPodcastImageTransform()
     }
 
     @objc func volumeSliderValueDidChange(sender: UISlider) {

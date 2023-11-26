@@ -155,8 +155,8 @@ class PodcastPlayer: UIView {
         super.init(frame: frame)
         self.subviews.forEach { $0.semanticContentAttribute = .forceLeftToRight }
         self.layoutUserInterFace()
-        self.observePlayerExactPlaying()
-        self.observeTrackTime()
+        self.observePlayerWhenPlaying()
+        self.setupTrackTimeObserver()
         self.addTapGesture()
         self.addPanGestures()
     }
@@ -199,37 +199,54 @@ class PodcastPlayer: UIView {
         self.addSubview(collapsedView)
     }
 
-    private func updateStyle(style: PodcastPlayerStyle) {
-        self.containerView.backgroundColor = style.backgroundColor
-        self.collapsedView.backgroundColor = style.minimizedViewBackground ?? style.backgroundColor
-        if let dismissButtonTypography = style.dismissButtonTypography {
-            self.dismissButton.titleLabel?.font = dismissButtonTypography.font
-            self.dismissButton.titleLabel?.textColor = dismissButtonTypography.color
-            self.dismissButton.tintColor = dismissButtonTypography.color
-        }
-        self.podcastImageView.contentMode = style.podcastImageContentMode ?? .scaleAspectFill
-        if let titleLabelTypography = style.titleLabelTypography {
-            self.podcastTitleLabel.textColor = titleLabelTypography.color
-            self.podcastTitleLabel.font = titleLabelTypography.font
-        }
-        if let autherLabelTypography = style.autherLabelTypography {
-            self.podcastAuther.textColor = autherLabelTypography.color
-            self.podcastAuther.font = autherLabelTypography.font
-        }
-        if let currentLenthTypography = style.currentLenthTypography {
-            self.podcastCurrentLenth.textColor = currentLenthTypography.color
-            self.podcastCurrentLenth.font = currentLenthTypography.font
-        }
+    // MARK: Setup Player Style
 
-        if let maxLenthTypography = style.maxLenthTypography {
-            self.podcastMaxLenth.textColor = maxLenthTypography.color
-            self.podcastMaxLenth.font = maxLenthTypography.font
+    private func updateStyle(style: PodcastPlayerStyle) {
+        updateBackgroundColor(style)
+        updateDismissButton(style)
+        updatePodcastImageView(style)
+        updateLabelsTypography(style)
+        updateControlButtons(style)
+    }
+
+    private func updateBackgroundColor(_ style: PodcastPlayerStyle) {
+        containerView.backgroundColor = style.backgroundColor
+        collapsedView.backgroundColor = style.minimizedViewBackground ?? style.backgroundColor
+    }
+
+    private func updateDismissButton(_ style: PodcastPlayerStyle) {
+        if let dismissButtonTypography = style.dismissButtonTypography {
+            dismissButton.titleLabel?.font = dismissButtonTypography.font
+            dismissButton.titleLabel?.textColor = dismissButtonTypography.color
+            dismissButton.tintColor = dismissButtonTypography.color
         }
-        self.volumeUpButton.tintColor = style.controlButtonsTintColor ?? .black
-        self.volumeDownButton.tintColor = style.controlButtonsTintColor ?? .black
-        self.soundSlider.tintColor = style.controlButtonsTintColor ?? .black
-        self.progressSlider.tintColor = style.controlButtonsTintColor ?? .black
-        self.controlsView.style = .init(buttonsTintColor: style.controlButtonsTintColor ?? .black)
+    }
+
+    private func updatePodcastImageView(_ style: PodcastPlayerStyle) {
+        podcastImageView.contentMode = style.podcastImageContentMode ?? .scaleAspectFill
+    }
+
+    private func updateLabelsTypography(_ style: PodcastPlayerStyle) {
+        updateLabelTypography(podcastTitleLabel, style.titleLabelTypography)
+        updateLabelTypography(podcastAuther, style.autherLabelTypography)
+        updateLabelTypography(podcastCurrentLenth, style.currentLenthTypography)
+        updateLabelTypography(podcastMaxLenth, style.maxLenthTypography)
+    }
+
+    private func updateLabelTypography(_ label: UILabel, _ typography: Typography?) {
+        if let labelTypography = typography {
+            label.textColor = labelTypography.color
+            label.font = labelTypography.font
+        }
+    }
+
+    private func updateControlButtons(_ style: PodcastPlayerStyle) {
+        let buttonsTintColor = style.controlButtonsTintColor ?? .black
+        volumeUpButton.tintColor = buttonsTintColor
+        volumeDownButton.tintColor = buttonsTintColor
+        soundSlider.tintColor = buttonsTintColor
+        progressSlider.tintColor = buttonsTintColor
+        controlsView.style = PlayerControlsViewStyle(buttonsTintColor: buttonsTintColor)
     }
 
     @objc func didTappedDismissButton() {
@@ -248,48 +265,101 @@ class PodcastPlayer: UIView {
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
         player.play()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
-        playerItemBufferEmptyObserver = player.currentItem?.observe(\AVPlayerItem.isPlaybackBufferEmpty, options: [.new]) { [weak self] _, _ in
-            guard let self = self else { return }
-            self.podcastMaxLenth.enableSkeleton(enable: true)
-        }
-
-        playerItemBufferKeepUpObserver = player.currentItem?.observe(\AVPlayerItem.isPlaybackLikelyToKeepUp, options: [.new]) { [weak self] _, _ in
-            guard let self = self else { return }
-            self.podcastMaxLenth.enableSkeleton(enable: false)
-        }
-
-        playerItemBufferFullObserver = player.currentItem?.observe(\AVPlayerItem.isPlaybackBufferFull, options: [.new]) { [weak self] _, _ in
-            guard let self = self else { return }
-            self.podcastMaxLenth.enableSkeleton(enable: true)
-        }
+        self.observeTrackEnding()
+        self.observePlayerBuffringState()
     }
 
-    @objc func finishedPlaying(_: NSNotification) {
-        self.player.seek(to: .zero)
-        self.didTappedPlayPauseButton()
-    }
-
-    func transformPodcastImageView(toIdentity: Bool = false) {
+    func applyPodcastImageTransform(toIdentity: Bool = false) {
         let scale = toIdentity ? 1 : self.presentable?.podCastImageAnimationScale ?? 0.8
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseInOut) {
             self.podcastImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
         }
     }
 
-    private func observePlayerExactPlaying() {
+    private func updateCurrentLenthLabel(currentTime: String) {
+        self.podcastCurrentLenth.text = currentTime
+    }
+
+    private func updateFullLenthLabel(fullTime: String?) {
+        self.podcastMaxLenth.text = fullTime
+    }
+
+    deinit {
+        self.removeObservers()
+    }
+}
+
+// MARK: Configure View And Play
+
+extension PodcastPlayer: PodcastPlayerDataSource {
+    func configure(presentable: Presentable) {
+        self.collapsedView.alpha = 0
+        if self.presentable != nil {
+            if self.presentable?.podcastId == presentable.podcastId {
+                return
+            }
+        }
+        self.presentable = presentable
+        self.configurePlayerLabels(presentable: presentable)
+        self.configureImageView(presentable: presentable)
+        self.configureControlsView(presentable: presentable)
+        self.configureLoadingState(isLoading: true)
+        self.preparePlayerVolumeSettings()
+        self.play(url: presentable.podcastUrl)
+    }
+
+    private func configurePlayerLabels(presentable: Presentable) {
+        self.podcastTitleLabel.text = presentable.podCastTitle
+        self.collapsedView.podcastTitleLabel.text = presentable.podCastTitle
+        self.podcastAuther.text = presentable.podCastAuther
+        self.podcastCurrentLenth.text = presentable.currentTimeLabelDefaultValue ?? "00.00"
+        self.podcastMaxLenth.text = presentable.maxLenghLabelDefaultValue ?? "--:--:--"
+    }
+
+    private func configureImageView(presentable: Presentable) {
+        switch presentable.pocCastImage {
+        case let .local(image):
+            self.podcastImageView.image = image
+            self.collapsedView.podcastImageView.image = image
+        case let .url(imageUrl):
+            self.collapsedView.podcastImageView.setImage(from: imageUrl)
+            self.podcastImageView.setImage(from: imageUrl)
+        }
+        self.applyPodcastImageTransform()
+    }
+
+    private func configureControlsView(presentable: Presentable) {
+        self.controlsView.setPlayPauseImage(image: presentable.playIcon ?? UIImage(systemName: "play.fill"))
+        self.controlsView.setBackwardImage(image: presentable.backwardIcon ?? UIImage(systemName: "gobackward.10"))
+        self.controlsView.setForwardImage(image: presentable.forwardIcon ?? UIImage(systemName: "goforward.10"))
+    }
+
+    func configureLoadingState(isLoading: Bool) {
+        self.podcastMaxLenth.enableSkeleton(enable: isLoading)
+    }
+
+    private func preparePlayerVolumeSettings() {
+        self.soundSlider.value = 1
+        self.player.volume = 1
+    }
+}
+
+// MARK: Observers
+
+extension PodcastPlayer {
+    private func observePlayerWhenPlaying() {
         let time = CMTime(value: 1, timescale: 3)
         let timesArray = [NSValue(time: time)]
         self.player.addBoundaryTimeObserver(forTimes: timesArray, queue: .main) { [weak self] in
             guard let self = self else {
                 return
             }
-            self.transformPodcastImageView(toIdentity: true)
+            self.applyPodcastImageTransform(toIdentity: true)
             self.controlsView.setPlayPauseImage(image: self.presentable?.pauseIcon ?? UIImage(systemName: "pause.fill"))
         }
     }
 
-    private func observeTrackTime() {
+    private func setupTrackTimeObserver() {
         let interval = CMTime(value: 1, timescale: 2)
         self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main,
                                             using: { [weak self] time in
@@ -303,15 +373,39 @@ class PodcastPlayer: UIView {
                                             })
     }
 
-    private func updateCurrentLenthLabel(currentTime: String) {
-        self.podcastCurrentLenth.text = currentTime
+    private func observePlayerBuffringState() {
+        playerItemBufferEmptyObserver = player.currentItem?.observe(\AVPlayerItem.isPlaybackBufferEmpty, options: [.new]) { [weak self] _, _ in
+            guard let self = self else {
+                return
+            }
+            self.configureLoadingState(isLoading: true)
+        }
+
+        playerItemBufferKeepUpObserver = player.currentItem?.observe(\AVPlayerItem.isPlaybackLikelyToKeepUp, options: [.new]) { [weak self] _, _ in
+            guard let self = self else {
+                return
+            }
+            self.configureLoadingState(isLoading: false)
+        }
+
+        playerItemBufferFullObserver = player.currentItem?.observe(\AVPlayerItem.isPlaybackBufferFull, options: [.new]) { [weak self] _, _ in
+            guard let self = self else {
+                return
+            }
+            self.configureLoadingState(isLoading: true)
+        }
     }
 
-    private func updateFullLenthLabel(fullTime: String?) {
-        self.podcastMaxLenth.text = fullTime
+    private func observeTrackEnding() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
     }
 
-    deinit {
+    @objc func finishedPlaying(_: NSNotification) {
+        self.player.seek(to: .zero)
+        self.didTappedPlayPauseButton()
+    }
+
+    private func removeObservers() {
         NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
         playerItemBufferEmptyObserver?.invalidate()
         playerItemBufferEmptyObserver = nil
@@ -319,38 +413,5 @@ class PodcastPlayer: UIView {
         playerItemBufferKeepUpObserver = nil
         playerItemBufferFullObserver?.invalidate()
         playerItemBufferFullObserver = nil
-    }
-}
-
-extension PodcastPlayer: PodcastPlayerDataSource {
-    func configure(presentable: Presentable) {
-        self.collapsedView.alpha = 0
-        if self.presentable != nil {
-            if self.presentable?.podcastUrl == presentable.podcastUrl {
-                return
-            }
-        }
-        self.presentable = presentable
-        self.podcastTitleLabel.text = presentable.podCastTitle
-        self.collapsedView.podcastTitleLabel.text = presentable.podCastTitle
-        self.podcastAuther.text = presentable.podCastAuther
-        switch presentable.pocCastImage {
-        case let .local(image):
-            self.podcastImageView.image = image
-            self.collapsedView.podcastImageView.image = image
-        case let .url(imageUrl):
-            self.collapsedView.podcastImageView.setImage(from: imageUrl)
-            self.podcastImageView.setImage(from: imageUrl)
-        }
-        self.controlsView.setPlayPauseImage(image: presentable.playIcon ?? UIImage(systemName: "play.fill"))
-        self.controlsView.setBackwardImage(image: presentable.backwardIcon ?? UIImage(systemName: "gobackward.10"))
-        self.controlsView.setForwardImage(image: presentable.forwardIcon ?? UIImage(systemName: "goforward.10"))
-        self.podcastCurrentLenth.text = presentable.currentTimeLabelDefaultValue ?? "00.00"
-        self.podcastMaxLenth.text = presentable.maxLenghLabelDefaultValue ?? "--:--:--"
-        self.transformPodcastImageView()
-        self.podcastMaxLenth.enableSkeleton(enable: true)
-        self.play(url: presentable.podcastUrl)
-        self.soundSlider.value = 1
-        self.player.volume = 1
     }
 }
