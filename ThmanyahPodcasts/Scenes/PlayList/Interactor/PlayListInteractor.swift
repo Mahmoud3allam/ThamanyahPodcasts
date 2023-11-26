@@ -14,7 +14,10 @@ class PlayListInteractor: PlayListInteractorInPutProtocol {
     var storage: LocalStorageProtocol?
 
     func login(email: String, password: String) {
-        authWorker?.login(email, password, completion: { result in
+        authWorker?.login(email, password, completion: { [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case let .success(user):
                 guard let user = user else {
@@ -30,7 +33,10 @@ class PlayListInteractor: PlayListInteractorInPutProtocol {
     }
 
     func fetchPlayList() {
-        self.playListWorker?.getPlayList(completion: { result in
+        self.playListWorker?.getPlayList(completion: { [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case let .success(playListResponse):
                 guard let playListDetails = playListResponse?.data else {
