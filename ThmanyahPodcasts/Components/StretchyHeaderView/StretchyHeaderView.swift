@@ -64,6 +64,7 @@ class StretchyHeaderView: UIView {
     private var imageViewBottom = NSLayoutConstraint()
     private var containerViewHeight = NSLayoutConstraint()
     let gradientLayer = CAGradientLayer()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         layoutUserInterFace()
@@ -74,13 +75,9 @@ class StretchyHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
     private func layoutUserInterFace() {
-        addSubViews()
-        setupBaseConstraints()
+        self.addSubViews()
+        self.setupBaseConstraints()
         self.setupPlayListNavigationBar()
         self.setupPlayListBottonActions()
         self.setupTitleLabelConstraints()

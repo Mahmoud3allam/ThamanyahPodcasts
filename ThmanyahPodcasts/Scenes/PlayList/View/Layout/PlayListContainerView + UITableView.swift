@@ -10,10 +10,6 @@ import Foundation
 import UIKit
 
 extension PlayListContainerView: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in _: UITableView) -> Int {
-        1
-    }
-
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         self.presenter.numberOfEpisodes()
     }

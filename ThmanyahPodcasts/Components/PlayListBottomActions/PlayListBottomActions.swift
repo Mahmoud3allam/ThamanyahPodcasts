@@ -48,6 +48,7 @@ class PlayListBottomActions: UIView {
         button.tintColor = .white
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
         button.backgroundColor = Colors.haileyBlue.color
+        button.layer.cornerRadius = 39 / 2
         return button
     }()
 
@@ -57,6 +58,7 @@ class PlayListBottomActions: UIView {
         button.tintColor = .white
         button.setImage(UIImage(systemName: "arrow.down"), for: .normal)
         button.backgroundColor = Colors.haileyBlue.color
+        button.layer.cornerRadius = 39 / 2
         return button
     }()
 
@@ -72,7 +74,7 @@ class PlayListBottomActions: UIView {
 
     private func layoutUserInterFace() {
         self.addSubViews()
-        self.setupBackButtonConstraints()
+        self.setupShuffleButtonConstraints()
         self.setupHStackViewConstriants()
     }
 
@@ -81,7 +83,7 @@ class PlayListBottomActions: UIView {
         self.addSubview(self.hStackView)
     }
 
-    private func setupBackButtonConstraints() {
+    private func setupShuffleButtonConstraints() {
         NSLayoutConstraint.activate([
             self.shuffleButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 31),
             self.shuffleButton.heightAnchor.constraint(equalToConstant: 39),
@@ -97,11 +99,11 @@ class PlayListBottomActions: UIView {
             self.hStackView.widthAnchor.constraint(equalToConstant: (39 * 2) + 11),
             self.hStackView.centerYAnchor.constraint(equalTo: self.shuffleButton.centerYAnchor)
         ])
+        self.addHStackArrangedSubViews()
+    }
 
+    private func addHStackArrangedSubViews() {
         self.hStackView.addArrangedSubview(self.nextButton)
         self.hStackView.addArrangedSubview(self.playButton)
-
-        nextButton.layer.cornerRadius = 39 / 2
-        playButton.layer.cornerRadius = 39 / 2
     }
 }

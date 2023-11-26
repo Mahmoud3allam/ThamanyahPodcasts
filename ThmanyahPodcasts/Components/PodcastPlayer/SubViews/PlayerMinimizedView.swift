@@ -51,8 +51,8 @@ class PlayerMinimizedView: UIView {
 
     private func layoutUserInterFace() {
         self.addSubView()
-        self.setupPodcatImageView()
-        self.setupPodcatTitleLabel()
+        self.setupPodcastImageViewConstraints()
+        self.setupPodcastTitleLabelConstraints()
     }
 
     private func addSubView() {
@@ -61,7 +61,7 @@ class PlayerMinimizedView: UIView {
         self.addSubview(self.sepratorView)
     }
 
-    private func setupPodcatImageView() {
+    private func setupPodcastImageViewConstraints() {
         NSLayoutConstraint.activate([
             self.podcastImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             self.podcastImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
@@ -71,7 +71,7 @@ class PlayerMinimizedView: UIView {
         ])
     }
 
-    private func setupPodcatTitleLabel() {
+    private func setupPodcastTitleLabelConstraints() {
         NSLayoutConstraint.activate([
             self.podcastTitleLabel.leadingAnchor.constraint(equalTo: self.podcastImageView.trailingAnchor, constant: 10),
             self.podcastTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),

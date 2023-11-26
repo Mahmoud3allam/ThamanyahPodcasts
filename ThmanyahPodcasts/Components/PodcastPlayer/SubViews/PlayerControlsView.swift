@@ -68,9 +68,9 @@ class PlayerControlsView: UIView {
 
     private func layoutUserInterFace() {
         addSubViews()
-        addPlayButton()
-        addBackwardButton()
-        addForwardButton()
+        setupPlayPauseButtonConstraints()
+        setupBackwardButtonConstraints()
+        setupForwardButtonConstraints()
     }
 
     private func addSubViews() {
@@ -79,7 +79,7 @@ class PlayerControlsView: UIView {
         addSubview(forwardButton)
     }
 
-    private func addPlayButton() {
+    private func setupPlayPauseButtonConstraints() {
         NSLayoutConstraint.activate([
             playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -88,7 +88,7 @@ class PlayerControlsView: UIView {
         ])
     }
 
-    private func addBackwardButton() {
+    private func setupBackwardButtonConstraints() {
         NSLayoutConstraint.activate([
             backwardButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             backwardButton.trailingAnchor.constraint(equalTo: playPauseButton.leadingAnchor, constant: -30),
@@ -97,7 +97,7 @@ class PlayerControlsView: UIView {
         ])
     }
 
-    private func addForwardButton() {
+    private func setupForwardButtonConstraints() {
         NSLayoutConstraint.activate([
             forwardButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             forwardButton.leadingAnchor.constraint(equalTo: playPauseButton.trailingAnchor, constant: 30),

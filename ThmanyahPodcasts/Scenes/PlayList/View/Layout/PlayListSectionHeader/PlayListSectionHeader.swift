@@ -55,7 +55,7 @@ class PlayListSectionHeader: UIView {
     private func layoutUserInterFace() {
         self.addSubViews()
         self.setupTitleLabelConstraints()
-        self.setupTitleDescriptionConstraints()
+        self.setupDescriptionLabelConstraints()
         self.setupSepratorViewConstraints()
     }
 
@@ -72,7 +72,7 @@ class PlayListSectionHeader: UIView {
         ])
     }
 
-    private func setupTitleDescriptionConstraints() {
+    private func setupDescriptionLabelConstraints() {
         NSLayoutConstraint.activate([
             self.descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             self.descriptionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10)
